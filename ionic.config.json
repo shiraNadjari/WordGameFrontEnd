@@ -1,0 +1,7 @@
+{
+  "name": "WordGameFrontEnd",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,27 @@
+
+<ion-content class="general" style="background-image: '../../assets/upWordsbackground.jpg'">
+
+  <p *ngIf="items == 0" style="font-size: 400%;text-align: center">please wait...</p>
+  <ion-spinner class="spinnerCenter" name="crescent" *ngIf="items == 0"></ion-spinner>
+   
+  
+   <!-- <ion-grid  class="ion-no-padding"  style="margin-top: 1%;height: -webkit-full-available">
+    <ion-row  style="height: -webkit-full-available;margin-left: 5%;margin-bottom: 0%" > 
+      <ion-col style="height: -webkit-full-available" col-3 *ngFor="let item of aa" class="imgTxt">  
+        <div (click)='itemTapped($event,item)' [ngStyle]="{'background-image':'url('+ item.ImageURL +')'}" style="padding-right: 1%;padding-left: 1%;width: 80%;height: 80%; border-style: double;align-self: center;margin-top: 5%;-webkit-background-size: cover;"></div>
+
+        <a  (click)='itemTapped($event,item)' href="javascript:void(0);"  style="align-self: center; width:90%;margin-left:-10%;height:70%" [ngStyle]="{'background-image':'url('+ item.ImageURL +')'}">{{item.CategoryName}}</a><br>  -->
+      <!-- </ion-col>
+    </ion-row>
+
+  </ion-grid> --> 
+  <ion-grid>
+    <ion-row style="height: -webkit-full-available;margin-left: 5%;margin-bottom: 0%">
+      <ion-col size="4" *ngFor="let item of aa">
+        <img (click)='itemTapped($event,item)' [src]="item.ImageURL" style="border:double; padding-right: 1%;padding-left: 1%;width: 80%;height: 80%; border-style: double;align-self: center;margin-top: 5%; -webkit-background-size: cover;"/>
+        <!-- <div (click)='itemTapped($event,item)' [ngStyle]="{'background-image':'url('+ item.ImageURL +')'}" style="padding-right: 1%;padding-left: 1%;width: 80%;height: 80%; border-style: double;align-self: center;margin-top: 5%;-webkit-background-size: cover;"></div> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

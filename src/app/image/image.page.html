@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide>
+          <h1>Slide 1</h1>
+        </ion-slide>
+        <ion-slide>
+          <h1>Slide 2</h1>
+        </ion-slide>
+        <ion-slide>
+          <h1>Slide 3</h1>
+        </ion-slide>
+      </ion-slides>
+
+  <ion-slides  >   
+      <ion-slide *ngFor="let item of images; let i=index">
+        <img (click)='findclickcoordinants($event)' id="i" [src]="item.image.URL" style="margin-left:20%;height: 100%;padding-top: 1%;width: 60%;align-self: center;-webkit-background-size:cover" />
+    <!-- <div (swipe)="($event.offsetDirection  == 4) ? goback():goforward()" *ngIf="img" id="image" (click)="findclickcoordinants($event)" [ngStyle]="{'background-image':'url('+ item.image.URL +')'}" style="margin-left:20%;height: 100%;padding-top: 1%;width: 60%;align-self: center;-webkit-background-size:cover"> -->
+        <p id="ooo" > {{NameObject}}</p>  
+ <!-- </div>  -->
+   </ion-slide>
+  </ion-slides>
+</ion-content>
