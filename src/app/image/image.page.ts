@@ -24,6 +24,7 @@ export class ImagePage implements OnInit {
   xScreen:number;
   imagewidth: any;
   imageheight: any;
+  color="";
 
   slideOpts = {
     initialSlide: 1,
@@ -37,7 +38,7 @@ export class ImagePage implements OnInit {
     debugger;
     this.categoryId=imageserv.oneimage.image.CategoryID;
     this.ind=imageserv.oneimage.image.ImageID;
-
+    this.color=this.categoryserv.color;
     //the ten images that are currently in the system
     this.images=imageserv.imagesArr;
     for (let index = 0; index < this.images.length; index++) {
@@ -141,7 +142,7 @@ export class ImagePage implements OnInit {
   
   this.imagewidth=this.elementinfo.width;
   this.imageheight=this.elementinfo.height;
-   document.getElementById("ooo").setAttribute("style","margin-left:1%;margin-top:1%;color:blue;font-size:250%");
+   document.getElementById("ooo").setAttribute("style","margin-left:1%;margin-top:0.5%;color:blue;font-size:250%");
   
   this.findobject();
   

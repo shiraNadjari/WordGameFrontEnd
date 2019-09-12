@@ -30,7 +30,7 @@ constructor(public router:ActivatedRoute,
   private servImage:ImageServiceService,
   public PassRouter:Router
    ) {
-  
+  debugger;
 this.categoryname=servcategory.onecategory.CategoryName;
 this.categoryId=servcategory.onecategory.CategoryId;
 this.color=this.servcategory.color;
@@ -88,7 +88,7 @@ async getimages() {
   var x = await this.resolveAfter4Secondsimages();
 
   // this.imagesArr = JSON.stringify(this.imagesArrLoad);
-   this.imagesArr = this.imagesArrLoad;
+  this.imagesArr = this.imagesArrLoad;
 
   
  

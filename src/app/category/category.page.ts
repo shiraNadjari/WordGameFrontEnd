@@ -39,7 +39,7 @@ colors:string[];
       this.getCategories();
    
     this.colors=[
-    "red","blue","pink","red","blue"
+    "rgb(184, 247, 12)","rgb(247, 12, 71)","rgb(250, 65, 52)","rgb(22, 245, 189)","blue","pink"
     ]
      }
     //  gotopageusergalary(event){
@@ -75,15 +75,16 @@ colors:string[];
       this.items2=this.items;
       debugger;
       this.aa= this.items2;
-     this.iconadd=new category("iconAdd",-1,"../../assets/icon/addicon.png");
-      this.aa.push(this.iconadd);
-      this.aa=categories;
+     this.iconadd=new category("iconAdd",-1,"../../assets/icon/addicon.jpg");
+      // this.aa.push(this.iconadd);
+      // this.aa=categories;
       //this.aa=this.items2.concat(this.items);
      }
     ionViewDidLoad() {
       console.log('ionViewDidLoad CategoryPage');
     }
    itemTapped(event,item:category){
+     debugger;
     for (let i = 0; i < this.aa.length; i++) {
       if(this.aa[i].CategoryId==item.CategoryId)
       {

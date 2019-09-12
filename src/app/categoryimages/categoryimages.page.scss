@@ -4,12 +4,19 @@ page-categoryimages {
 .row{
     height: -webkit-fill-available;
 }
+
+.div-toolbar-container{
+    background-color:  rgb(235, 183, 14);
+}
 .scroll-content{
     overflow-x: auto;
     overflow-y: auto;
+    color: rgb(22, 245, 189);
 }
 element.style{
     height: -webkit-fill-available;
+    background-color:  rgb(235, 183, 14);
+
 }
 .general {
     background-color: rgb(235, 183, 14);
@@ -48,7 +55,7 @@ body{
     // justify-content: center;
     // align-items: center;
     height: 50%;
-
+    
     padding-left: 10%;
     margin-left: 45%;
 }
