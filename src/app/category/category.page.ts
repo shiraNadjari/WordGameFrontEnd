@@ -17,15 +17,16 @@ import { Router,NavigationExtras } from '@angular/router';
 })
 export class CategoryPage implements OnInit {
   arrPages:any=[];
-
   currentPage = 1;
   numOfPages = 10 ;
   empty;
   numrow;
   items:any[]=null;//arr of caterories!
   items2:any[];
-  aa;
+  aa:category[];
 
+colors:string[];
+  iconadd:category;
   constructor(private screenorientation:ScreenOrientation, 
     // private NavigationExtras:NavigationExtras,
     // private alertCtrl: AlertController,
@@ -34,9 +35,12 @@ export class CategoryPage implements OnInit {
 
      public servCategory:CategoryServiceService,
     private camera:Camera,public router:Router) {
-      
+      this.screenorientation.lock(this.screenorientation.ORIENTATIONS.LANDSCAPE);
       this.getCategories();
     this.getcurrentscreenorientation();
+    this.colors=[
+    "red","blue","pink","red","blue","pink"
+    ]
      }
     //  gotopageusergalary(event){
     //   this.userId=12;
@@ -69,25 +73,41 @@ export class CategoryPage implements OnInit {
       var x = await this.resolveAfter4Seconds();
       this.items = this.items;
       this.items2=this.items;
-     
-      this.aa=this.items2.concat(this.items);
-      this.aa=this.aa.concat(this.items);
-      this.aa=this.aa.concat(this.items);
-    
-    }
+      debugger;
+      this.aa= this.items2;
+     this.iconadd=new category("iconAdd",-1,"../../assets/icon/addicon.png");
+      this.aa.push(this.iconadd);
+      //this.aa=this.items2.concat(this.items);
+     }
     ionViewDidLoad() {
       console.log('ionViewDidLoad CategoryPage');
     }
    itemTapped(event,item:category){
+    for (let i = 0; i < this.aa.length; i++) {
+      if(this.aa[i].CategoryId==item.CategoryId)
+      {
+        this.servCategory.color=this.colors[i];
+      }
+      
+    }
      debugger;
      this.servCategory.onecategory=item;
      let navigationExtras: NavigationExtras = {
       queryParams: {
         categoryName: item.CategoryName,
-        categoryId: item.CategoryId
+        categoryId: item.CategoryId,
       }
+
   };
+
+  if(item.CategoryId==-1)
+  {
+    this.router.navigate(['usergalary']);
+  }
+  else{
   this.router.navigate(['categoryimages'], navigationExtras);
+    
+  }
     //this.router.navigate(['categoryimages',{categoryName:item.CategoryName,categoryId:item.CategoryId}])
      //item=//we need category name
     }

@@ -1,5 +1,5 @@
 
-<ion-content class="general" style="background-image: '../../assets/upWordsbackground.jpg'">
+<ion-content class="general" >
 
   <p *ngIf="items == 0" style="font-size: 400%;text-align: center">please wait...</p>
   <ion-spinner class="spinnerCenter" name="crescent" *ngIf="items == 0"></ion-spinner>
@@ -15,11 +15,13 @@
     </ion-row>
 
   </ion-grid> --> 
-  <ion-grid>
-    <ion-row style="height: -webkit-full-available;margin-left: 5%;margin-bottom: 0%">
+  <ion-grid style="height: -webkit-full-available;background: url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;background-color: transparent;opacity:1;-webkit-background-size: cover">
+    <ion-row style="height: -webkit-full-available;margin-left: 5%;margin-bottom: 0%" >
       <ion-col size="4" *ngFor="let item of aa">
-        <img (click)='itemTapped($event,item)' [src]="item.ImageURL" style="border:double; padding-right: 1%;padding-left: 1%;width: 80%;height: 80%; border-style: double;align-self: center;margin-top: 5%; -webkit-background-size: cover;"/>
+       <div > 
+         <img (click)='itemTapped($event,item)' [src]="item.ImageURL" style="border:double; padding-right: 1%;padding-left: 1%;width: 80%;height: 80%; border-style: double;align-self: center;margin-top: 5%; -webkit-background-size: cover;border-color: tomato"/>
         <!-- <div (click)='itemTapped($event,item)' [ngStyle]="{'background-image':'url('+ item.ImageURL +')'}" style="padding-right: 1%;padding-left: 1%;width: 80%;height: 80%; border-style: double;align-self: center;margin-top: 5%;-webkit-background-size: cover;"></div> -->
+      </div>
       </ion-col>
     </ion-row>
   </ion-grid>

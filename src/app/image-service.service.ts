@@ -11,7 +11,7 @@ export class ImageServiceService {
   imagesArr:any;
   oneimage:imageWithObject;
   getTwelveImagesByCategory(categoryId:number,numpage:number): any {
-    return this.http.get("http://50c6dfe6.ngrok.io/api/Images/"+categoryId+"?time="+numpage)
+    return this.http.get("http://e6f36a11.ngrok.io/api/Images/"+categoryId+"?time="+numpage)
     .toPromise().then(
       res => {  
         

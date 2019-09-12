@@ -1,0 +1,54 @@
+page-categoryimages {
+    background-color: rgb(235, 183, 14);
+}
+.row{
+    height: -webkit-fill-available;
+}
+.scroll-content{
+    overflow-x: auto;
+    overflow-y: auto;
+}
+element.style{
+    height: -webkit-fill-available;
+}
+.general {
+    background-color: rgb(235, 183, 14);
+}
+.imgsize{
+    height: 100px;
+    width: 100px;
+}
+.ion-text-center{
+    text-align: center;
+   // align-content: center;
+}
+button{
+    width: 12px;
+    height: 10px;
+}
+.classCurrent{
+    color: red;
+}
+.numbersPage{
+    display: inline-block;
+    // color: pink;
+}
+body{
+    background-color: rgb(235, 183, 14);
+}
+.toolbar-background {
+    background-color:rgb(235, 183, 14);
+    border-style: outset;
+    //border-color: black;
+  }
+            
+  .spinnerCenter {
+    //display: flex;
+   // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    height: 50%;
+
+    padding-left: 10%;
+    margin-left: 45%;
+}
