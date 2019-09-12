@@ -1,9 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>usergalary</ion-title>
+    <ion-title>My Pictures</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+
+    <ion-icon name="camera" (click)="OpenMyCamera()"></ion-icon>
+    <!-- <div (click)="OpenMyCamera()">Camera</div><br> -->
+    <!-- <ion-icon name="camera"></ion-icon> -->
+    <div (click)="OpenMyGalary()">MyGalary</div>
+    <img   [src]="image" *ngIf="image">
+    <!-- <p id="boxid" class="onImageBorder"  *ngIf="showBox"></p> -->
+    <!-- <div *ngIf="listObj" > -->
+      <!-- <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" [id]="i">======</div>
+    </div>
+    
+    <img *ngIf="img" id="image" [src]='img' class="half_fade" (click)="findlocation($event)">
+    <div id="idbox"  *ngIf="img" ></div>
+
+    <img/> -->
+    <!-- margin-left: x1;margin-top: y1 -->
+    <!-- <div (click)="sendIngToVision()">Send my image to vision detect</div><br>
+    
+    <ion-item *ngIf="showradio">
+      <div *ngFor="let ob of listIn" >
+       <input type="radio" (click)="saveObj($event,ob)">{{ob.Name}} -->
+      <!-- <p>{{ob.Name}}</p> -->
+      <!-- <input *ngFor="let ob of listObj" type="radio"  text="ob.VoiceURL"/>{{ob.Name}}<br><br> -->
+      <!-- </div>
+      <input type="radio" name="gender" (click)="changeInput($event)">other  
+      <input id="text" type="text" [(ngModel)]="valuetext" *ngIf="input">
+      <div (click)="saveObjOther()" > save object</div> -->
+      <!-- <ion-button>save</ion-button> -->
+    <!-- </ion-item> 
+  <div (click)="saveInVision()">ok save all items</div> -->
+  <!-- <iom-button>del</iom-button> -->
 
 </ion-content>
+
+
+<!--
+  Generated template for the UsergalaryPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->

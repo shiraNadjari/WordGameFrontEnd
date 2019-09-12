@@ -24,6 +24,7 @@ export class ImagePage implements OnInit {
   xScreen:number;
   imagewidth: any;
   imageheight: any;
+  color="";
 
   slideOpts = {
     initialSlide: 1,
@@ -37,7 +38,7 @@ export class ImagePage implements OnInit {
     debugger;
     this.categoryId=imageserv.oneimage.image.CategoryID;
     this.ind=imageserv.oneimage.image.ImageID;
-
+    this.color=this.categoryserv.color;
     //the ten images that are currently in the system
     this.images=imageserv.imagesArr;
     for (let index = 0; index < this.images.length; index++) {
@@ -80,11 +81,13 @@ export class ImagePage implements OnInit {
   return d1+d2+d3+d4;//without ^\שורש 
   }
   flag:boolean;
+  bla;
   findobject(){this.flag=true;
     debugger;
-  for (let index = 0; index < this.img.imageObjects.length; index++) {
+    // his.images[bla].imageObjects.length
+  for (let index = 0; index < this.images[this.bla].imageObjects.length; index++) {
     debugger;
-    const OneObject = this.img.imageObjects[index]; 
+    const OneObject = this.images[this.bla].imageObjects[index]; 
     this.x/=this.imagewidth;
     this.y/=this.imageheight;
     //checks if the click is in the range of the current object is 
@@ -111,7 +114,7 @@ export class ImagePage implements OnInit {
     {
       var clossestObj= this.findClosestObj();
       console.log(clossestObj.Name);
-      this.NameObject=clossestObj.Name;
+      // this.NameObject=clossestObj.Name;
       this.initVoice(clossestObj.VoiceURL);
       this.playAudio() ;
     }
@@ -126,8 +129,8 @@ export class ImagePage implements OnInit {
     console.log;
     this.x=event.clientX;//the click position that the user  made-x
     this.y=event.clientY;//" y
-    let bla=event.currentTarget.id;
-    this.elementinfo=document.getElementById(bla).getBoundingClientRect();
+    this.bla=event.currentTarget.id;
+    this.elementinfo=document.getElementById(this.bla).getBoundingClientRect();
     // this.yScreen =this.heigtscreen-  this.elementinfo.bottom;
     // this.xScreen =this.widthscreen-  this.elementinfo.left;
     // this.x-=this.xScreen;
@@ -139,7 +142,7 @@ export class ImagePage implements OnInit {
   
   this.imagewidth=this.elementinfo.width;
   this.imageheight=this.elementinfo.height;
-   document.getElementById("ooo").setAttribute("style","margin-left:1%;margin-top:1%;color:blue;font-size:250%");
+   document.getElementById("ooo").setAttribute("style","margin-left:1%;margin-top:0.5%;color:blue;font-size:250%");
   
   this.findobject();
   
@@ -202,6 +205,12 @@ export class ImagePage implements OnInit {
         this.audio.pause();
         this.audio = null;
       }
+    }
+    GoBackHome(){
+      this.router.navigate(['category']);
+    }
+    GoBackPage(){
+      this.router.navigate(['categoryimages']);
     }
 
   ngOnInit() {

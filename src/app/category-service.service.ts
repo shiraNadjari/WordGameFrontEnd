@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {category} from '../app/classes/category'
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +9,12 @@ import { HttpClient } from '@angular/common/http';
 export class CategoryServiceService {
 
   constructor(public http: HttpClient) { }
+  color="";
   cateroriesArr:any;
-  onecategory:any
+  onecategory:category;
   //get num pages of this category-by category id 
   getNumPageByCategoryId(categoryId:number): any {
-    return this.http.get("http://localhost:52093/api/Categories/"+categoryId).toPromise().then(
+    return this.http.get("http://c2f1760c.ngrok.io/api/Categories/"+categoryId).toPromise().then(
       res => { return res;})
       .catch(err => { return false;})
   }

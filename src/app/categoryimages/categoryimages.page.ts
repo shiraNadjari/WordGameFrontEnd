@@ -24,15 +24,16 @@ arrPages=[];
 displayCurr:boolean=true;
 display: boolean=true;
 sub;
+color="";
 constructor(public router:ActivatedRoute,
   private servcategory:CategoryServiceService,
   private servImage:ImageServiceService,
   public PassRouter:Router
    ) {
-  
+  debugger;
 this.categoryname=servcategory.onecategory.CategoryName;
 this.categoryId=servcategory.onecategory.CategoryId;
-
+this.color=this.servcategory.color;
 
   //get number of pages
   this.getnumpages();
@@ -134,6 +135,11 @@ navtoimage(event,item:imageWithObject){//send image id to image page and opens t
   this.PassRouter.navigate(['image']);
   //  this.navCtrl.push(ImagePage,{idimage:item.image.ImageID,categoryId:this.categoryId}); 
 }
+
+GoBack(){
+  this.PassRouter.navigate(['category']);
+}
+
 ionViewDidLoad() {
   console.log('ionViewDidLoad CategoryimagesPage');
 }
