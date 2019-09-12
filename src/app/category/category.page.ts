@@ -5,7 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
  import { CategoryimagesPage} from  '../categoryimages/categoryimages.page' ;
  import { UsergalaryPage } from '../usergalary/usergalary.page';
  
-import { category } from '../classes/category';
+import { category,categories } from '../classes/category';
 import{CategoryServiceService}from '../category-service.service';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
 import { Router,NavigationExtras } from '@angular/router';
@@ -37,9 +37,9 @@ colors:string[];
     private camera:Camera,public router:Router) {
       this.screenorientation.lock(this.screenorientation.ORIENTATIONS.LANDSCAPE);
       this.getCategories();
-    this.getcurrentscreenorientation();
+   
     this.colors=[
-    "red","blue","pink","red","blue","pink"
+    "red","blue","pink","red","blue"
     ]
      }
     //  gotopageusergalary(event){
@@ -77,6 +77,7 @@ colors:string[];
       this.aa= this.items2;
      this.iconadd=new category("iconAdd",-1,"../../assets/icon/addicon.png");
       this.aa.push(this.iconadd);
+      this.aa=categories;
       //this.aa=this.items2.concat(this.items);
      }
     ionViewDidLoad() {
