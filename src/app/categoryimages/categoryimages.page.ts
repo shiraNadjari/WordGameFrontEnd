@@ -13,7 +13,7 @@ import{imageWithObject} from '../classes/imageWithObject'
 export class CategoryimagesPage implements OnInit {
 
 categoryId: any;
-categoryname:any;
+categoryname:any="";
 last:boolean=true;
 imagesArr:any=0;//paginig 10 at a time
 imagesArrLoad;
@@ -25,6 +25,7 @@ displayCurr:boolean=true;
 display: boolean=true;
 sub;
 color="";
+IsPlaying=true;
 constructor(public router:ActivatedRoute,
   private servcategory:CategoryServiceService,
   private servImage:ImageServiceService,
@@ -42,7 +43,11 @@ this.color=this.servcategory.color;
   this.currentPage=1;//always begin with 1 page!
   // enter the current images in this page
   this.getimages();
-  
+  if (servcategory.IsPlaying)
+  {
+    this.pause=true;
+    this.play1=false
+  }
 // this.ArrayPage();
  }
 
@@ -142,6 +147,31 @@ GoBack(){
 
 ionViewDidLoad() {
   console.log('ionViewDidLoad CategoryimagesPage');
+}
+
+initVoice() {
+  debugger;
+  this.servcategory.audio = new Audio();
+  this.servcategory.audio.src ="../../assets/backgroundsong.mp3";
+  this.servcategory.audio.load();
+  this.playAudio();
+}
+play1=false;
+playAudio() { 
+debugger;
+this.servcategory.audio.play();
+ this.servcategory.audio.loop = true;
+ this.servcategory.play=false;
+ this.servcategory.pause=true;
+ this.servcategory.IsPlaying=true
+}
+
+pause=true;
+stop() {
+  this.servcategory.audio.pause(); 
+  this.servcategory.pause=false
+  this.servcategory.play=true
+  this.servcategory.IsPlaying=false;
 }
 
 ngOnInit() {

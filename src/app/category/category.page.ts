@@ -5,6 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
  import { CategoryimagesPage} from  '../categoryimages/categoryimages.page' ;
  import { UsergalaryPage } from '../usergalary/usergalary.page';
  
+ 
 import { category,categories } from '../classes/category';
 import{CategoryServiceService}from '../category-service.service';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
@@ -36,10 +37,12 @@ colors:string[];
      public servCategory:CategoryServiceService,
     private camera:Camera,public router:Router) {
       this.screenorientation.lock(this.screenorientation.ORIENTATIONS.LANDSCAPE);
+      debugger;
+     this.initVoice()
       this.getCategories();
    
     this.colors=[
-    "rgb(184, 247, 12)","rgb(247, 12, 71)","rgb(250, 65, 52)","rgb(22, 245, 189)","blue","pink"
+    "rgb(127, 106, 38)","rgb(58,122,43)","rgb(122,43,43)","rgb(202,206,27)","rgb(198,102,38)","rgb(42,93,124)"
     ]
      }
     //  gotopageusergalary(event){
@@ -75,8 +78,8 @@ colors:string[];
       this.items2=this.items;
       debugger;
       this.aa= this.items2;
-     this.iconadd=new category("iconAdd",-1,"../../assets/icon/addicon.jpg");
-      // this.aa.push(this.iconadd);
+      this.iconadd=new category("My Images",-1,"../../assets/pluslove.jpg");
+      this.aa.push(this.iconadd);
       // this.aa=categories;
       //this.aa=this.items2.concat(this.items);
      }
@@ -104,7 +107,7 @@ colors:string[];
 
   if(item.CategoryId==-1)
   {
-    this.router.navigate(['usergalary']);
+    this.router.navigate(['user']);
   }
   else{
   this.router.navigate(['categoryimages'], navigationExtras);
@@ -136,5 +139,28 @@ colors:string[];
   ngOnInit() {
   }
 
+  initVoice() {
+    debugger;
+    this.servCategory.audio = new Audio();
+    this.servCategory.audio.src ="../../assets/backgroundsong.mp3";
+    this.servCategory.audio.load();
+    this.playAudio();
+  }
+  play1=false;
+playAudio() { 
+  debugger;
+ this.servCategory.audio.play();
+   this.servCategory.audio.loop = true;
+   this.servCategory.play=false;
+   this.servCategory.pause=true;
+   this.servCategory.IsPlaying=true;
+}
 
+pause=true;
+  stop() {
+    this.servCategory.audio.pause(); 
+    this.servCategory.pause=false
+    this.servCategory.play=true
+    this.servCategory.IsPlaying=false;
+  }
 }

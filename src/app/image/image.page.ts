@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild ,ViewChildren} from '@angular/core';
 import{CategoryServiceService}from '../category-service.service';
 import{ImageServiceService}from '../image-service.service';
-import { Platform } from '@ionic/angular';
+import { Platform ,IonSlides,IonSlide} from '@ionic/angular';
 import {imageObject} from'../classes/Object'
 import { Router } from '@angular/router';
 @Component({
@@ -9,7 +9,12 @@ import { Router } from '@angular/router';
   templateUrl: './image.page.html',
   styleUrls: ['./image.page.scss'],
 })
+
 export class ImagePage implements OnInit {
+  
+ 
+@ViewChild ('slides', { static: true }) slides: IonSlides;
+@ViewChildren('Slide') slideCollection: IonSlide;
 
   images:any[];//the image array for each category
   img;//="https://bit.ly/2MDc4b4";//shorturl.at/doEJ4//service call insert image obj...
@@ -30,11 +35,14 @@ export class ImagePage implements OnInit {
     initialSlide: 1,
     speed: 400
   };
+  slide:IonSlides;
+
   constructor(private imageserv:ImageServiceService,
     private categoryserv:CategoryServiceService,
     private platform:Platform,
     private router:Router
     ) { 
+     
     debugger;
     this.categoryId=imageserv.oneimage.image.CategoryID;
     this.ind=imageserv.oneimage.image.ImageID;
@@ -44,6 +52,8 @@ export class ImagePage implements OnInit {
     for (let index = 0; index < this.images.length; index++) {
       if(this.images[index].image.ImageID==this.ind)
       {
+      //  this. slides.slideTo(index)
+      // this.slides.SlideTo(index);
        this.img=this.images[index];
         break;
       }
@@ -52,6 +62,10 @@ export class ImagePage implements OnInit {
     this.heigtscreen=platform.height();
     this.widthscreen=platform.width();
   }
+
+next(slide, index){
+  slide.SlideTo(index);
+}
 
 
 
@@ -116,7 +130,16 @@ export class ImagePage implements OnInit {
       console.log(clossestObj.Name);
       // this.NameObject=clossestObj.Name;
       this.initVoice(clossestObj.VoiceURL);
-      this.playAudio() ;
+      
+      
+      if(this.categoryserv.pause)
+      {
+        this.stopBack();
+        this.categoryserv.pause=true;
+      }
+
+      this.playAudio();
+      this.playAudioBack();
     }
     else{
       this.flag=true;
@@ -190,8 +213,14 @@ export class ImagePage implements OnInit {
       this.audio.load();
     }
   playAudio() { 
+  
+   debugger;
+   this.audio.onended = () => {
+    this.audio.onended = null;
+    this.playAudioBack();
+} 
    this.audio.play();
-     this.audio.loop = false;
+   this.audio.loop = false;
   }
   // playAudio() { 
   //  this.audio.play();
@@ -216,4 +245,32 @@ export class ImagePage implements OnInit {
   ngOnInit() {
   }
 
+
+  initVoiceBack() {
+    debugger;
+    this.categoryserv.audio = new Audio();
+    this.categoryserv.audio.src ="../../assets/backgroundsong.mp3";
+    this.categoryserv.audio.load();
+    this.playAudio();
+  }
+  play1=false;
+playAudioBack() { 
+  debugger;
+  if(this.categoryserv.pause)
+  {
+ this.categoryserv.audio.play();
+   this.categoryserv.audio.loop = true;
+   this.categoryserv.play=false;
+   this.categoryserv.pause=true;
+   this.categoryserv.IsPlaying=true;
+  }
+}
+
+pause=true;
+  stopBack() {
+    this.categoryserv.audio.pause(); 
+    this.categoryserv.pause=false
+    this.categoryserv.play=true
+    this.categoryserv.IsPlaying=false;
+  }
 }
