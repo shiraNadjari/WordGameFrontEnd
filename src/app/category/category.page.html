@@ -2,13 +2,10 @@
 <ion-header>
     <ion-toolbar style="background-color: aqua" [style.background.color]="color" [style.color]="color">
       <ion-title>
-       </ion-title>
-       UpWords
-       <!-- <ion-icon name="volume-off" (click)="stop()" *ngIf="pause"></ion-icon>
-       <ion-icon name="volume-up"(click)="playaudio()" *ngIf="play1"></ion-icon> -->
-       <img style="width:2%;margin-left: 95%;" (click)="playAudio()" *ngIf="servCategory.play" src='../../assets/play.jpg'>
-       <img style="width:2%;margin-left: 95%;" (click)="stop()" *ngIf="servCategory.pause" src='../../assets/pause (2).jpg'>
-
+      <p style="text-align: center" > UpWords</p>
+      </ion-title>
+      <img style="width:2%;margin-left: 90%;" (click)="playAudio()" *ngIf="servCategory.play" src='../../assets/play.jpg'>
+      <img style="width:2%;margin-left: 90%;" (click)="stop()" *ngIf="servCategory.pause" src='../../assets/pause (2).jpg'> 
     </ion-toolbar>
   </ion-header>
 

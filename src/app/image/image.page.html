@@ -2,24 +2,28 @@
 <ion-header>
   <ion-toolbar>
     <ion-title [style.color]="color">
+        <img style="width:2%;margin-left: 95%;" (click)="playAudioBack()" *ngIf="categoryserv.play" src='../../assets/play.jpg'>
+        <img style="width:2%;margin-left: 95%;" (click)="stopBack()" *ngIf="categoryserv.pause" src='../../assets/pause (2).jpg'>
     </ion-title>
     <ion-icon [style.color]="color" name="arrow-back" style="margin-right: 100%" (click)="GoBackPage()" ></ion-icon>       
-    <img style="width:2%;margin-left: 95%;" (click)="playAudioBack()" *ngIf="categoryserv.play" src='../../assets/play.jpg'>
-     <img style="width:2%;margin-left: 95%;" (click)="stopBack()" *ngIf="categoryserv.pause" src='../../assets/pause (2).jpg'>
+   
     <!-- <ion-icon name="home" (click)="GoBackHome()" style="margin-left: 95%"></ion-icon> -->
   </ion-toolbar>
 </ion-header>
 <ion-content  style="background: url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;background-color: transparent;opacity:1;-webkit-background-size: cover">
 
-<div [style.background-color]="color" style="background-size: cover;">
-  <ion-slides id="slides"  [style.background-color]="color" #slides>   
-      <ion-slide *ngFor="let item of images; let i=index" >
-        <img (click)='findclickcoordinants($event)' id="{{i}}" [src]="item.image.URL" style="border-radius: 10%; margin-top:12%; border-color: black;border-style: groove;border-width: thick;height: 100%;padding-top: 0.5%;width: 60%;align-self: center;-webkit-background-size:cover" />
+<div id="bla" [style.background-color]="color" style="background-size: cover;">
+  <ion-slides id="slides"  [style.background-color]="color" ##sliderRef>   
+      <ion-slide #slides *ngFor="let item of images; let i=index" >
+        
+        <img  (click)='findclickcoordinants($event)' id="{{i}}" [src]="item.image.URL" style="border-radius: 10%; margin-top:12%; border-color: black;border-style: groove;border-width: thick;height: 100%;padding-top: 0.5%;width: 60%;align-self: center;-webkit-background-size:cover" />
     <!-- <div (swipe)="($event.offsetDirection  == 4) ? goback():goforward()" *ngIf="img" id="image" (click)="findclickcoordinants($event)" [ngStyle]="{'background-image':'url('+ item.image.URL +')'}" style="margin-left:20%;height: 100%;padding-top: 1%;width: 60%;align-self: center;-webkit-background-size:cover"> -->
-        <p id="ooo" > {{NameObject}}</p>  
+        <p id="ooo" > {{NameObject}}</p> 
+      
  <!-- </div>  -->
    </ion-slide>
   </ion-slides>
+
  <br>
  <br>
  <br>

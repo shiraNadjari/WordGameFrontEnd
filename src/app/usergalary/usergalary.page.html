@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>My Pictures</ion-title>
+    <!-- <img style="width:2%;margin-left: 95%;" (click)="playAudioBack()" *ngIf="categoryserv.play" src='../../assets/play.jpg'>
+    <img style="width:2%;margin-left: 95%;" (click)="stopBack()" *ngIf="categoryserv.pause" src='../../assets/pause (2).jpg'> -->
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +13,7 @@
     <!-- <div (click)="OpenMyCamera()">Camera</div><br> -->
     <!-- <ion-icon name="camera"></ion-icon> -->
     <div (click)="OpenMyGalary()">MyGalary</div>
-    <img  [src]="myimage" *ngIf="image" (click)="findlocation($event)">
+    <img  [src]="image"  (click)="findlocation($event)"/>
     <button (click)="sendToVision()" >Find Objects</button>
     <!-- <p id="boxid" class="onImageBorder"  *ngIf="showBox"></p> -->
     <!-- <div *ngIf="listObj" > -->

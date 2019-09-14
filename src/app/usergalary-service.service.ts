@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import {image} from '../app/classes/image'
 @Injectable({
   providedIn: 'root'
 })
@@ -24,12 +25,13 @@ export class UsergalaryServiceService {
 //         return res; })
 //       .catch(err => { return false;})
 //   }
-getListObject(userId:number,image:string): Promise<any> {
+getListObject(userId:number,base64:string): Promise<any> {
   debugger;
+let img=new image(0,base64,0,0,0);
   const headers = new HttpHeaders ({'Content-Type': 'application/json'});
     return this.http
     
-    .post('http://1a96fa94.ngrok.io/api/Users/'+userId+"?catid=6",{"url":image},{headers:headers}).toPromise().then(
+    .post('http://34054239.ngrok.io/api/Users/'+userId+"?catid=51",img,{headers:headers}).toPromise().then(
       response => {
       return response;
     })

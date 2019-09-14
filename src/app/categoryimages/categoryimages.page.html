@@ -2,12 +2,10 @@
   <ion-toolbar style="background-color: aqua" [style.background.color]="color" [style.color]="color">
     <ion-title>
       <p styly="text-align:center" >{{categoryname}}</p>
-      
-      
      </ion-title>
      <ion-icon name="arrow-back" style="margin-right: 120%" (click)="GoBack()"></ion-icon>
-     <img style="width:2%;margin-left: 95%;"  (click)="playAudio()" *ngIf="servcategory.play" src='../../assets/play.jpg'>
-     <img style="width:2%;margin-left: 95%;"  (click)="stop()" *ngIf="servcategory.pause" src='../../assets/pause (2).jpg'>
+     <img style="width:2%;margin-left: 90%;"  (click)="playAudio()" *ngIf="servcategory.play" src='../../assets/play.jpg'>
+     <img style="width:2%;margin-left: 90%;"  (click)="stop()" *ngIf="servcategory.pause" src='../../assets/pause (2).jpg'>
   </ion-toolbar>
 </ion-header>
 

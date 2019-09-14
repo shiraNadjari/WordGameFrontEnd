@@ -1,7 +1,7 @@
-import { Component, OnInit,ViewChild ,ViewChildren} from '@angular/core';
+import { Component, OnInit ,ViewChildren, ElementRef,ViewChild} from '@angular/core';
 import{CategoryServiceService}from '../category-service.service';
 import{ImageServiceService}from '../image-service.service';
-import { Platform ,IonSlides,IonSlide} from '@ionic/angular';
+import { Platform ,IonSlides} from '@ionic/angular';
 import {imageObject} from'../classes/Object'
 import { Router } from '@angular/router';
 @Component({
@@ -13,8 +13,9 @@ import { Router } from '@angular/router';
 export class ImagePage implements OnInit {
   
  
-@ViewChild ('slides', { static: true }) slides: IonSlides;
-@ViewChildren('Slide') slideCollection: IonSlide;
+@ViewChild(IonSlides, { static: false }) slides:IonSlides;
+
+
 
   images:any[];//the image array for each category
   img;//="https://bit.ly/2MDc4b4";//shorturl.at/doEJ4//service call insert image obj...
@@ -44,6 +45,8 @@ export class ImagePage implements OnInit {
     ) { 
      
     debugger;
+    var a=document.getElementsByTagName("ion-slides");
+  
     this.categoryId=imageserv.oneimage.image.CategoryID;
     this.ind=imageserv.oneimage.image.ImageID;
     this.color=this.categoryserv.color;
@@ -52,8 +55,9 @@ export class ImagePage implements OnInit {
     for (let index = 0; index < this.images.length; index++) {
       if(this.images[index].image.ImageID==this.ind)
       {
-      //  this. slides.slideTo(index)
-      // this.slides.SlideTo(index);
+        setTimeout(() => {
+                this.slides.slideTo(index);
+            }, 50);
        this.img=this.images[index];
         break;
       }
@@ -96,8 +100,11 @@ next(slide, index){
   }
   flag:boolean;
   bla;
+imagelocked=false;
   findobject(){this.flag=true;
     debugger;
+  if(this.imagelocked==false){
+    this.imagelocked=true;
     // his.images[bla].imageObjects.length
   for (let index = 0; index < this.images[this.bla].imageObjects.length; index++) {
     debugger;
@@ -139,11 +146,13 @@ next(slide, index){
       }
 
       this.playAudio();
-      this.playAudioBack();
+      // this.playAudioBack();
     }
     else{
       this.flag=true;
     }
+  }
+
   } 
   
   findclickcoordinants(event){
@@ -217,9 +226,11 @@ next(slide, index){
    debugger;
    this.audio.onended = () => {
     this.audio.onended = null;
-    this.playAudioBack();
+  this.playAudioBackAfterObject()
+    this.imagelocked=false;
 } 
    this.audio.play();
+   
    this.audio.loop = false;
   }
   // playAudio() { 
@@ -256,21 +267,30 @@ next(slide, index){
   play1=false;
 playAudioBack() { 
   debugger;
-  if(this.categoryserv.pause)
-  {
  this.categoryserv.audio.play();
    this.categoryserv.audio.loop = true;
    this.categoryserv.play=false;
    this.categoryserv.pause=true;
    this.categoryserv.IsPlaying=true;
-  }
 }
-
+playAudioBackAfterObject() { 
+  debugger;
+   if(this.categoryserv.pause)
+   {
+ this.categoryserv.audio.play();
+   this.categoryserv.audio.loop = true;
+   this.categoryserv.play=false;
+   this.categoryserv.pause=true;
+   this.categoryserv.IsPlaying=true;
+   }
+}
 pause=true;
   stopBack() {
+    debugger;
     this.categoryserv.audio.pause(); 
     this.categoryserv.pause=false
     this.categoryserv.play=true
     this.categoryserv.IsPlaying=false;
   }
+
 }
