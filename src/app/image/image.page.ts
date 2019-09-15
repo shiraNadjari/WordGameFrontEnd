@@ -331,7 +331,9 @@ borderImage(obj:imageObject,Id){
   this.sizeW=(obj.X2-obj.X1)*this.imagewidth;
   this.sizeH=(obj.Y4-obj.Y1)*this.imageheight;
   //change the bounding box of the object from code-ts!
-  document.getElementById('div'+Id).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
+  var mydiv='div'+Id;
+  document.getElementById(mydiv).innerText="blaaaaa";
+  document.getElementById(mydiv).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
   "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent; ");
 }
 makeTransparency(event,obj:imageObject){
