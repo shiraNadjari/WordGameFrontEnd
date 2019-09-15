@@ -30,6 +30,8 @@ constructor(public router:ActivatedRoute,
   private servImage:ImageServiceService,
   public PassRouter:Router
    ) {
+
+    
   debugger;
 this.categoryname=servcategory.onecategory.CategoryName;
 this.categoryId=servcategory.onecategory.CategoryId;
@@ -73,7 +75,7 @@ resolveAfter4Secondsimages() {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(
-        this.servImage.getTwelveImagesByCategory(this.categoryId,this.currentPage-1).then(data => {
+        this.servImage.getImagesByCategory(this.categoryId,this.currentPage-1).then(data => {
           this.imagesArrLoad = data;
           console.log(this.imagesArrLoad);
 
@@ -97,7 +99,7 @@ async getimages() {
 GetImagesPage(NumPage:number){
   //we put in the numpage index of page!!
   //this service call return 10 images in this page,we put it in the array
-  this.imagesArr= this.servImage.getTwelveImagesByCategory(this.categoryId,NumPage-1,);
+  this.imagesArr= this.servImage.getImagesByCategory(this.categoryId,NumPage-1,);
   this.imagesArr=this.servImage.imagesArr;
 }
 toolbarPages()
@@ -127,9 +129,9 @@ this.currentPage=cur;
 this.GetImagesPage(this.currentPage);
 //this.ArrayPage();
 }
-
-navtoimage(event,item:imageWithObject){//send image id to image page and opens the page
+navtoimage(event,item:imageWithObject,i:number){//send image id to image page and opens the page
   debugger;
+  this.servcategory.index=i;
   //item=//we need category name
   this.servImage.oneimage=item;
   this.PassRouter.navigate(['image']);

@@ -1,7 +1,10 @@
 <body [style.background-color]="color">
 <ion-header>
   <ion-toolbar>
-    <ion-title [style.color]="color"><ion-icon name="arrow-back"  (click)="GoBackPage()" ></ion-icon>       </ion-title>
+    <ion-title [style.color]="color">
+      <ion-icon name="arrow-back"  (click)="GoBackPage()" ></ion-icon>
+      <img src="../../assets/homepng.png" style="width: 2%;margin-left: 95%" (click)="GoBackHome()" />
+           </ion-title>
     
     <!-- <ion-icon name="home" (click)="GoBackHome()" style="margin-left: 95%"></ion-icon> -->
   </ion-toolbar>
@@ -10,11 +13,15 @@
 
 
   <ion-slides  [style.background-color]="color">   
-      <ion-slide *ngFor="let item of images; let i=index">
+      <ion-slide *ngFor="let item of images; let i=index">  
+              <div class="fontborder" style="width: 50%;">{{index}}</div>
+
+        <img (click)="GoLeft()" src="../../assets/arrowleft.png" style="width: 15%;margin-left: -20%"/>
         <img (click)='findclickcoordinants($event)' id="{{i}}" [src]="item.image.URL" style="border-radius: 10%;border-color: black;border-style: groove;border-width: thick;height: 100%;padding-top: 0.5%;width: 60%;align-self: center;-webkit-background-size:cover" />
     <!-- <div (swipe)="($event.offsetDirection  == 4) ? goback():goforward()" *ngIf="img" id="image" (click)="findclickcoordinants($event)" [ngStyle]="{'background-image':'url('+ item.image.URL +')'}" style="margin-left:20%;height: 100%;padding-top: 1%;width: 60%;align-self: center;-webkit-background-size:cover"> -->
-        <p id="ooo" > {{NameObject}}</p>  
+        <!-- <p id="ooo" > {{NameObject}}</p>   -->
  <!-- </div>  -->
+      <img (click)="GoRight()" src="../../assets/right1.png" style="width: 15%; margin-right:-20%"/>
    </ion-slide>
   </ion-slides>
 </ion-content>

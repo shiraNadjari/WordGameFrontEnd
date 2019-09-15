@@ -7,7 +7,7 @@ export class UsergalaryServiceService {
 
   constructor(private http:HttpClient) { }
   getListObject(userId:number,image:string): any {
-    return this.http.get("http://e6f36a11.ngrok.io/api/Users/"+userId+"/6"+image)
+    return this.http.get("http://localhost:52093/api/Users/"+userId+"/6"+image)
     .toPromise().then(
       res => { 
         //this.imagesArr=res;

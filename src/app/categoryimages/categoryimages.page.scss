@@ -8,19 +8,23 @@ page-categoryimages {
 .div-toolbar-container{
     background-color:  rgb(235, 183, 14);
 }
-.scroll-content{
-    overflow-x: auto;
-    overflow-y: auto;
-    color: rgb(22, 245, 189);
-}
-element.style{
-    height: -webkit-fill-available;
-    background-color:  rgb(235, 183, 14);
 
+.toolbar-container{
+    background-color:  rgb(235, 183, 14);
 }
-.general {
-    background-color: rgb(235, 183, 14);
-}
+// .scroll-content{
+//     overflow-x: auto;
+//     overflow-y: auto;
+//     color: rgb(22, 245, 189);
+// }
+// element.style{
+//     height: -webkit-fill-available;
+//     background-color:  rgb(235, 183, 14);
+
+// }
+// .general {
+//     background-color: rgb(235, 183, 14);
+// }
 .imgsize{
     height: 100px;
     width: 100px;
@@ -41,11 +45,11 @@ button{
     // color: pink;
 }
 body{
-    background-color: rgb(235, 183, 14);
+  //  background-color: rgb(235, 183, 14);
 }
 .toolbar-background {
-    background-color:rgb(235, 183, 14);
-    border-style: outset;
+   // background-color:rgb(235, 183, 14);
+  //  border-style: outset;
     //border-color: black;
   }
             
@@ -54,8 +58,35 @@ body{
    // flex-direction: column;
     // justify-content: center;
     // align-items: center;
-    height: 50%;
+    // height: 50%;
     
-    padding-left: 10%;
-    margin-left: 45%;
+    // padding-left: 10%;
+    // margin-left: 45%;
+}
+
+.fontborder{
+    text-shadow: 1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000,
+    0px 1px 0 #000,
+    0px -1px 0 #000,
+    -1px 0px 0 #000,
+    1px 0px 0 #000,
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0px 2px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 0px 0 #000,
+    1px 2px 0 #000,
+    -1px 2px 0 #000,
+    1px -2px 0 #000,
+    -1px -2px 0 #000,
+    2px 1px 0 #000,
+    -2px 1px 0 #000,
+    2px -1px 0 #000,
+    -2px -1px 0 #000;
 }
