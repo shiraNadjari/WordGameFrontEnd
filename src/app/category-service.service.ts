@@ -13,6 +13,10 @@ export class CategoryServiceService {
   index=0;
   cateroriesArr:any;
   onecategory:category;
+  audio:any;
+  IsPlaying=true;
+  play=false;
+  pause=true;
   //get num pages of this category-by category id 
   getNumPageByCategoryId(categoryId:number): any {
     return this.http.get("http://localhost:52093//api/Categories/"+categoryId).toPromise().then(

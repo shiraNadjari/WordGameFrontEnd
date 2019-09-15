@@ -1,22 +1,23 @@
 <ion-header >
   <ion-toolbar style="--background:darkgray">
-    <div>
     <ion-title>
-      <ion-icon name="arrow-back" (click)="GoBack()"></ion-icon>
-      <img src="../../assets/homepng.png" style="width: 2%;margin-left: 95%" (click)="GoBack()" />
+      <p styly="text-align:center" >{{categoryname}}</p>
      </ion-title>
-    </div>
-  </ion-toolbar>
+     <ion-icon name="arrow-back" style="margin-right: 120%" (click)="GoBack()"></ion-icon>
+     <img style="width:2%;margin-left: 90%;"  (click)="playAudio()" *ngIf="servcategory.play" src='../../assets/play.jpg'>
+     <img style="width:2%;margin-left: 90%;"  (click)="stop()" *ngIf="servcategory.pause" src='../../assets/pause (2).jpg'>
+     <img src="../../assets/homepng.png" style="width: 2%;margin-left: 95%" (click)="GoBack()" />
+
+    </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  <div [style.background-color]="color" >
-      <!-- <p *ngIf="imagesArr == 0" style="margin-top: 120px;font-size: 400%;text-align: center">please wait...</p> -->
+<ion-content>
+    <!-- <p  *ngIf="imagesArr == 0" style="font-size: 400%;text-align: center">please wait...</p> -->
     <ion-spinner  style="-webkit-background-size: cover;background-size: cover;padding-top:40% ;height: 100px !important;width: 100px !important;margin-left: 45%"  *ngIf="imagesArr == 0"></ion-spinner>
- <!-- <img style="size: cover;" src="../../assets/rainbowloading.gif" *ngIf="imagesArr == 0"/> -->
-    <!-- class="spinnerCenter" name="crescent" -->
+
     <!-- <p *ngIf="imagesArr == 0" style="font-size: 400%;text-align: center">please wait...</p>
     <ion-spinner class="spinnerCenter" name="crescent" *ngIf="imagesArr == 0"></ion-spinner> -->
+    
     <ion-grid [style.background-color]="color" class="ion-no-padding"class="home-gallery" style="height:100%;-moz-background-size: cover;background-size: cover;--background-color:[color];background-color: transparent;-webkit-background-size: cover">
         <ion-row style="height: 100%;margin-bottom: 0%" >
           <ion-col size="3" *ngFor="let item of imagesArr;let i=index" class="imgTxt" style="height: -webkit-full-available">
@@ -28,5 +29,5 @@
              <!-- <img class="imgsize" style="width: 70%;height: 80%;"></img> -->
             </ion-col>
         </ion-row>
-      </ion-grid> </div>
+      </ion-grid>
 </ion-content>

@@ -1,4 +1,16 @@
 
+<ion-header>
+    <ion-toolbar style="background-color: aqua" [style.background.color]="color" [style.color]="color">
+      <ion-title>
+      <p style="text-align: center" > UpWords</p>
+      </ion-title>
+      <img style="width:2%;margin-left: 90%;" (click)="playAudio()" *ngIf="servCategory.play" src='../../assets/play.jpg'>
+      <img style="width:2%;margin-left: 90%;" (click)="stop()" *ngIf="servCategory.pause" src='../../assets/pause (2).jpg'> 
+    </ion-toolbar>
+  </ion-header>
+
+
+
 <ion-content class="general"  style="--background:url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;" >
 
   <p *ngIf="items == 0" style="font-size: 400%;text-align: center">please wait...</p>
@@ -20,10 +32,11 @@
     <ion-row style="height:50%;margin-bottom: 0%" >
       <ion-col  size="4" *ngFor="let item of aa; let i=index">
        <div style=" align-content: center; position: relative;text-align: center;"> 
-         <img (click)='itemTapped($event,item)' [src]="item.ImageURL" style="border-radius: 20% !important;   border-style: solid;border-width: thick; padding-right: 1%;padding-left: 1%;width: 100%;height: 100%;align-self: center;margin-top: 5%; -webkit-background-size: cover;" [style.border-color]="colors[i]" />
-       <div class="fontborder" style="text-align: center; font-family: Arial, Helvetica, sans-serif;font-size: 45px; position: absolute;top: 50%;left:5%;right:5%" [style.color]="colors[i]">{{item.CategoryName}}</div>
+         <img (click)='itemTapped($event,item)' [src]="item.ImageURL" style="border-radius: 20% !important;   border-style: solid;border-width: 10px; padding-right: 1%;padding-left: 1%;width: 100%;height: 100%;align-self: center;margin-top: 5%; -webkit-background-size: cover;" [style.border-color]="colors[i]" />
+       <div  style="color:white; text-align: center; width:95% ;left:2%;right:5%;font-family: Arial, Helvetica, sans-serif;font-size: 45px; position: absolute;top: 70%;font-size:5vw" [style.background-color]="colors[i]">{{item.CategoryName}}</div>
          <!-- <div (click)='itemTapped($event,item)' [ngStyle]="{'background-image':'url('+ item.ImageURL +')'}" style="padding-right: 1%;padding-left: 1%;width: 80%;height: 80%; border-style: double;align-self: center;margin-top: 5%;-webkit-background-size: cover;"></div> -->
       </div>
+      
       </ion-col>
     </ion-row>
   </ion-grid>

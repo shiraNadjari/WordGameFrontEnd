@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router,NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPage implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+  openMyImages(){
+
+  }
+  AddImages(){
+    this.router.navigate(['usergalary']);
   }
 
 }

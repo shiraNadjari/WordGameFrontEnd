@@ -1,9 +1,15 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>user</ion-title>
+    <img style="width:2%;margin-left: 95%;" (click)="playAudioBack()" *ngIf="categoryserv.play" src='../../assets/play.jpg'>
+    <img style="width:2%;margin-left: 95%;" (click)="stopBack()" *ngIf="categoryserv.pause" src='../../assets/pause (2).jpg'>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+<button col-6 (click)="openMyImages()" style="border-radius: 20% !important;   border-style: solid;border-width: 10px; padding-right: 1%;padding-left: 1%;width: 100%;height: 100%;align-self: center;margin-top: 5%; -webkit-background-size: cover;" > My Images </button>
+<button col-6  (click)="AddImages()" style="border-radius: 20% !important;   border-style: solid;border-width: 10px; padding-right: 1%;padding-left: 1%;width: 100%;height: 100%;align-self: center;margin-top: 5%; -webkit-background-size: cover;"> Add Image </button>
+
 
 </ion-content>
