@@ -10,8 +10,9 @@ export class ImageServiceService {
   constructor(public http: HttpClient) { }
   imagesArr:any;
   oneimage:imageWithObject;
-  getTwelveImagesByCategory(categoryId:number,numpage:number): any {
-    return this.http.get("http://4ef410df.ngrok.io/api/Images/"+categoryId+"?time="+numpage)
+  getImagesByCategory(categoryId:number,numpage:number): any {
+    debugger;
+    return this.http.get("http://localhost:52093/api/Images/GetImages/"+11)
     .toPromise().then(
       res => {  
         
@@ -22,3 +23,5 @@ export class ImageServiceService {
   
   }
 }
+
+// return this.http.get("http://localhost:52093/api/Images/"+45+"?time="+numpage)

@@ -1,30 +1,33 @@
-<ion-header>
-  <ion-toolbar style="background-color: aqua" [style.background.color]="color" [style.color]="color">
+<ion-header >
+  <ion-toolbar style="--background:darkgray">
     <ion-title>
       <p styly="text-align:center" >{{categoryname}}</p>
      </ion-title>
      <ion-icon name="arrow-back" style="margin-right: 120%" (click)="GoBack()"></ion-icon>
      <img style="width:2%;margin-left: 90%;"  (click)="playAudio()" *ngIf="servcategory.play" src='../../assets/play.jpg'>
      <img style="width:2%;margin-left: 90%;"  (click)="stop()" *ngIf="servcategory.pause" src='../../assets/pause (2).jpg'>
-  </ion-toolbar>
+     <img src="../../assets/homepng.png" style="width: 2%;margin-left: 95%" (click)="GoBack()" />
+
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <p  *ngIf="imagesArr == 0" style="font-size: 400%;text-align: center">please wait...</p>
-  <ion-spinner class="spinnerCenter" name="crescent" *ngIf="imagesArr == 0"></ion-spinner>
+    <!-- <p  *ngIf="imagesArr == 0" style="font-size: 400%;text-align: center">please wait...</p> -->
+    <ion-spinner  style="-webkit-background-size: cover;background-size: cover;padding-top:40% ;height: 100px !important;width: 100px !important;margin-left: 45%"  *ngIf="imagesArr == 0"></ion-spinner>
 
     <!-- <p *ngIf="imagesArr == 0" style="font-size: 400%;text-align: center">please wait...</p>
     <ion-spinner class="spinnerCenter" name="crescent" *ngIf="imagesArr == 0"></ion-spinner> -->
     
-    <ion-grid [style.background-color]="color" *ngIf="imagesArr" class="ion-no-padding"class="home-gallery" style="height:100%;-moz-background-size: cover;   background-size: cover;--background-color:[color];background-color: transparent;-webkit-background-size: cover">
+    <ion-grid [style.background-color]="color" class="ion-no-padding"class="home-gallery" style="height:100%;-moz-background-size: cover;background-size: cover;--background-color:[color];background-color: transparent;-webkit-background-size: cover">
         <ion-row style="height: 100%;margin-bottom: 0%" >
-          <ion-col size="3" *ngFor="let item of imagesArr" class="imgTxt" style="height: -webkit-full-available">
+          <ion-col size="3" *ngFor="let item of imagesArr;let i=index" class="imgTxt" style="height: -webkit-full-available">
               <!--  <div (click)='navtoimage($event,item)' [ngStyle]="{'background-image':'url('+ item.image.URL +')'}" style="padding-right: 1%;padding-left: 1%;width: 80%;height: 80%; border-style: dotted;align-self: center;margin-top: 5%;-webkit-background-size: cover;"></div> -->
               <!-- <img style="width: 70%;height: 80%;opacity: 100%;"  [src]="item.image.URL" (click)='navtoimage($event,item)' class="imgsize">  -->
-             <img (click)='navtoimage($event,item)' [src]="item.image.URL" style=" padding-right: 0.25%;padding-left: 0.25%;width:120%;height: 100%; border-style: dotted;align-self: center;margin-top: 0.5%;-webkit-background-size: cover;"/>{{item.CategoryName}}
-              <!-- <img class="imgsize" style="width: 70%;height: 80%;"></img> -->
+              <!-- <p style="padding: 0%;position: absolute;padding-left: 5%">{{i+1}}</p> -->
+              <div [style.color]="color" style="font-size: x-large;padding-top: 5%;position: absolute;padding-left: 5%" class="fontborder">{{i+1}}</div>
+              <img (click)='navtoimage($event,item,i+1)' [src]="item.image.URL" style="color: black;border-radius: 10%;border-color: black;border-style: groove ;padding-right: 0.25%;padding-left: 0.25%;width:120%;height: 100%;border-width: thin;align-self: center;margin-top: 0.5%;-webkit-background-size: cover;"/>{{item.CategoryName}}
+             <!-- <img class="imgsize" style="width: 70%;height: 80%;"></img> -->
             </ion-col>
         </ion-row>
       </ion-grid>
-
 </ion-content>

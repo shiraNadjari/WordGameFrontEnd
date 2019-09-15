@@ -10,6 +10,7 @@ export class CategoryServiceService {
 
   constructor(public http: HttpClient) { }
   color="";
+  index=0;
   cateroriesArr:any;
   onecategory:category;
   audio:any;
@@ -18,7 +19,7 @@ export class CategoryServiceService {
   pause=true;
   //get num pages of this category-by category id 
   getNumPageByCategoryId(categoryId:number): any {
-    return this.http.get("http://4ef410df.ngrok.io/api/Categories/"+categoryId).toPromise().then(
+    return this.http.get("http://localhost:52093//api/Categories/"+categoryId).toPromise().then(
       res => { return res;})
       .catch(err => { return false;})
   }
@@ -26,7 +27,7 @@ export class CategoryServiceService {
   // get all the categories 
   getcategories(): any {
 
-    return this.http.get("http://4ef410df.ngrok.io/api/Categories/")
+    return this.http.get("http://localhost:52093//api/Categories/")
     .toPromise().then(
       res => { 
         this.cateroriesArr=res;

@@ -4,6 +4,7 @@ import{ImageServiceService}from '../image-service.service';
 import { Platform ,IonSlides,IonSlide} from '@ionic/angular';
 import {imageObject} from'../classes/Object'
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-image',
   templateUrl: './image.page.html',
@@ -32,6 +33,7 @@ export class ImagePage implements OnInit {
   imagewidth: any;
   imageheight: any;
   color="";
+  index:number;
 
   slideOpts = {
     initialSlide: 1,
@@ -52,9 +54,9 @@ export class ImagePage implements OnInit {
     ) { 
      
     debugger;
+    this.index=categoryserv.index;
     var a=document.getElementsByTagName("ion-slides");
-  
-    this.categoryId=imageserv.oneimage.image.CategoryID;
+      this.categoryId=imageserv.oneimage.image.CategoryID;
     this.ind=imageserv.oneimage.image.ImageID;
     this.color=this.categoryserv.color;
     //the ten images that are currently in the system
@@ -192,7 +194,7 @@ imagelocked=false;
   
   this.imagewidth=this.elementinfo.width;
   this.imageheight=this.elementinfo.height;
-   document.getElementById("ooo").setAttribute("style","margin-left:1%;margin-top:0.5%;color:blue;font-size:250%");
+   document.getElementById("ooo").setAttribute("style",";margin-top:0.5%;color:blue;font-size:250%");
   
   this.findobject();
   
@@ -269,6 +271,12 @@ imagelocked=false;
     }
     GoBackPage(){
       this.router.navigate(['categoryimages']);
+    }
+    GoRight(){
+
+    }
+    GoLeft(){
+
     }
 
   ngOnInit() {
