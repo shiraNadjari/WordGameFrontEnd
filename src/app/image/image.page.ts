@@ -1,7 +1,7 @@
 import { Component, OnInit ,ViewChildren, ElementRef,ViewChild} from '@angular/core';
 import{CategoryServiceService}from '../category-service.service';
 import{ImageServiceService}from '../image-service.service';
-import { Platform ,IonSlides} from '@ionic/angular';
+import { Platform ,IonSlides,IonSlide} from '@ionic/angular';
 import {imageObject} from'../classes/Object'
 import { Router } from '@angular/router';
 @Component({
@@ -14,7 +14,8 @@ export class ImagePage implements OnInit {
   
  
 @ViewChild(IonSlides, { static: false }) slides:IonSlides;
-
+ 
+@ViewChild(IonSlide, { static: false }) oneslide:IonSlide;
 
 
   images:any[];//the image array for each category
@@ -37,6 +38,12 @@ export class ImagePage implements OnInit {
     speed: 400
   };
   slide:IonSlides;
+  listObj: any;
+  elementimage: ClientRect | DOMRect;
+  locLeft: number;
+  locTop: number;
+  sizeW: number;
+  sizeH: number;
 
   constructor(private imageserv:ImageServiceService,
     private categoryserv:CategoryServiceService,
@@ -57,6 +64,7 @@ export class ImagePage implements OnInit {
       {
         setTimeout(() => {
                 this.slides.slideTo(index);
+                this.bla=index;
             }, 50);
        this.img=this.images[index];
         break;
@@ -66,6 +74,16 @@ export class ImagePage implements OnInit {
     this.heigtscreen=platform.height();
     this.widthscreen=platform.width();
   }
+  slideHappened(event){
+  this.slides.getActiveIndex().then(
+    (index)=>{
+      this.bla = index+1;
+   });
+   debugger;
+  this.forObject();
+
+}
+
 
 next(slide, index){
   slide.SlideTo(index);
@@ -292,5 +310,42 @@ pause=true;
     this.categoryserv.play=true
     this.categoryserv.IsPlaying=false;
   }
+  //border functions
+forObject(){
+ this.listObj= this.images[this.bla].imageObjects
+  debugger;
+  for (let i = 0; i < this.listObj.length; i++) {
+    this.borderImage(this.listObj[i],i);
+  }
+}
+borderImage(obj:imageObject,Id){
+ 
+  this.elementimage=document.getElementById(this.bla).getBoundingClientRect();
+  this.imagewidth=this.elementimage.width;//sizeofimage
+  this.imageheight=this.elementimage.height;
+  var offTop= document.getElementById(this.bla).offsetTop;//!!!!
+  this.locLeft=(obj.X1*this.imagewidth)+this.elementimage.left;
+/////////
+  this.locTop=(obj.Y1*this.imageheight)+offTop;
+  debugger;
+  this.sizeW=(obj.X2-obj.X1)*this.imagewidth;
+  this.sizeH=(obj.Y4-obj.Y1)*this.imageheight;
+  //change the bounding box of the object from code-ts!
+  document.getElementById('div'+Id).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
+  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent; ");
+}
+makeTransparency(event,obj:imageObject){
+  debugger;
+  var mid=event.currentTarget.id;
+  console.log(event.currentTarget);
+  if(mid!=null){
+   //console.log(document.getElementById(mid).getAttributeNames());
+     var offTop= document.getElementById(mid).offsetTop;
+    this.forObject();//all the element dont change, l'm here:
+    var size= document.getElementById(mid).getBoundingClientRect();
+    document.getElementById(mid).setAttribute("style","position:absolute;height:"+size.height+"px; width:"+size.width+"px;left:"
+    +size.left+"px;top:"+offTop+"px;border:3px dashed rgb(4, 92, 70);background-color: #fff; opacity:0.3");
+    }
+}
 
 }

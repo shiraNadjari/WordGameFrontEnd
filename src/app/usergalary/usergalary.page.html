@@ -16,17 +16,18 @@
     <img  [src]="myimage" id="image" (click)="findlocation($event)"/>
     <button (click)="sendToVision()" >Find Objects</button>
     <!-- <p id="boxid" class="onImageBorder"  *ngIf="showBox"></p> -->
-    <div *ngIf="listObj" >
-      <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" [id]="i">======</div>
-    </div>
-    
-    <!-- <img *ngIf="img"  [src]='img' class="half_fade" (click)="findlocation($event)">
-    <div id="idbox"  *ngIf="img" ></div>
+    <div  >
+      <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" [id]="i">==
 
-    <img/> -->
-    <!-- margin-left: x1;margin-top: y1 -->
-    <!-- <div (click)="sendIngToVision()">Send my image to vision detect</div><br>-->
+      </div>
+    </div>
+    <button (click)="forObject()">bla</button>
     
+    
+
+  
+    
+<!--     
    <ion-item *ngIf="showradio"> 
       <div *ngFor="let ob of listIn" >
        <input type="radio" (click)="saveObj($event,ob)">{{ob.Name}}  
@@ -37,7 +38,7 @@
       <input id="text" type="text" [(ngModel)]="valuetext" *ngIf="input">
       <div (click)="saveObjOther()" > save object</div>
       <ion-button>save</ion-button>
-     </ion-item> 
+     </ion-item>  -->
  <!-- <div (click)="saveInVision()">ok save all items</div> -->
   <!-- <iom-button>del</iom-button> -->
 
