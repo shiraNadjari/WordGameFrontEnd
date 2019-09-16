@@ -74,13 +74,16 @@ async getnumpages() {
   this.numOfPages=10;
 //  this.ArrayPage();//the numbers pages
 }
-
+userid=-1;
 resolveAfter4Secondsimages() {
   this.imagesArr=0;
+  debugger;
+  if(this.servcategory.onecategory.CategoryId==-1)
+      this.userid=13;
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(
-        this.servImage.getImagesByCategory(this.categoryId,this.currentPage-1).then(data => {
+        this.servImage.getImagesByCategory(this.userid,this.categoryId).then(data => {
           this.imagesArrLoad = data;
           console.log(this.imagesArrLoad);
 
@@ -92,6 +95,7 @@ resolveAfter4Secondsimages() {
 }
 
 async getimages() {
+  debugger;
   var x = await this.resolveAfter4Secondsimages();
 
   // this.imagesArr = JSON.stringify(this.imagesArrLoad);

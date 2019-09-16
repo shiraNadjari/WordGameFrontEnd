@@ -8,39 +8,43 @@
 
 <ion-content padding>
 
-
-    <ion-icon name="camera" (click)="OpenMyCamera()"></ion-icon>
-    <!-- <div (click)="OpenMyCamera()">Camera</div><br> -->
+<div style="font-size: 100px;margin-left: 40%" >
+    <ion-icon name="camera" (click)="OpenMyCamera()"></ion-icon></div>
+    <div *ngIf="spinner" style="size:34px;background-color: transparent;margin-left: 40%" ><ion-spinner name="bubbles"></ion-spinner></div><br>
     <!-- <ion-icon name="camera"></ion-icon> -->
-    <div (click)="OpenMyGalary()">MyGalary</div>
-    <img  [src]="myimage" id="image" (click)="findlocation($event)"/>
-    <button (click)="sendToVision()" >Find Objects</button>
+    <!-- <div (click)="OpenMyGalary()">MyGalary</div> -->
+    <img  [src]="myimage" id="image" style="max-width: 55%;border: 2px;border-radius: 20%
+    ;margin-left: 23%;" (click)="findlocation($event)"/>
+    <ion-button *ngIf="myimage" (click)="sendToVision()" style="left: -274px;margin-right: 13px;">Find Objects</ion-button>
     <!-- <p id="boxid" class="onImageBorder"  *ngIf="showBox"></p> -->
     <div  >
-      <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" [id]="i">==
-
+      <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" [id]="i">=
       </div>
     </div>
-    <button (click)="forObject()">bla</button>
-    
-    
+    <ion-button  *ngIf="myimage"  (click)="forObject()">bla</ion-button>
 
-  
-    
-<!--     
-   <ion-item *ngIf="showradio"> 
-      <div *ngFor="let ob of listIn" >
-       <input type="radio" (click)="saveObj($event,ob)">{{ob.Name}}  
-      <p>{{ob.Name}}</p> 
-      <input *ngFor="let ob of listObj" type="radio"  text="ob.VoiceURL"/>{{ob.Name}}<br><br>
-       </div>
-      <input type="radio" name="gender" (click)="changeInput($event)">other  
-      <input id="text" type="text" [(ngModel)]="valuetext" *ngIf="input">
-      <div (click)="saveObjOther()" > save object</div>
-      <ion-button>save</ion-button>
-     </ion-item>  -->
- <!-- <div (click)="saveInVision()">ok save all items</div> -->
-  <!-- <iom-button>del</iom-button> -->
+    <!-- *ngIf="showradio" -->
+    <div >
+    <ion-radio-group >
+      <ion-item>
+        <ion-label>
+            {{currentobject.Name}}
+        </ion-label>
+        <ion-radio id="radio" [checked]="ichecked==='radio'" (click)="radioChecked(0)"checked slot="start" >
+        </ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+        </ion-label>
+       <ion-radio id="other" [checked]="ichecked==='other'" (click)="radioChecked(1)" checked slot="start">
+       </ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  <input type="text"[(ngModel)]="valuetext" />enter     
+    <!-- <ion-input placeholder="Other" [(ngModel)]="valuetext"></ion-input> -->
+    <ion-button (click)="saveObj()"> save object</ion-button>
+   <ion-button (click)="saveInDB()">save</ion-button>
+  </div>
 
 </ion-content>
 

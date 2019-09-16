@@ -13,7 +13,7 @@ export class UserPage implements OnInit {
   ngOnInit() {
   }
   openMyImages(){
-
+    this.router.navigate(['categoryimages']);
   }
   AddImages(){
     this.router.navigate(['usergalary']);

@@ -79,6 +79,7 @@ colors:string[];
       debugger;
       this.aa= this.items2;
       this.iconadd=new category("My Images",-1,"../../assets/pluslove.jpg");
+      this.aa.pop();
       this.aa.push(this.iconadd);
       // this.aa=categories;
       //this.aa=this.items2.concat(this.items);
@@ -117,25 +118,9 @@ colors:string[];
      //item=//we need category name
     }
   getcurrentscreenorientation(){
-    this.takePhoto();
     console.log(this.screenorientation.type)
   }
-  takePhoto(){
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-    
-    this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-     // Handle error
-    });
-  }
+
   ngOnInit() {
   }
 

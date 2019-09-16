@@ -10,9 +10,10 @@ export class ImageServiceService {
   constructor(public http: HttpClient) { }
   imagesArr:any;
   oneimage:imageWithObject;
-  getImagesByCategory(categoryId:number,numpage:number): any {
+  getImagesByCategory(userid:number,categoryid:number): any {
     debugger;
-    return this.http.get("http://localhost:52093/api/Images/GetImages/"+11)
+    
+    return this.http.get("http://044fab2d.ngrok.io/api/Images/GetImages/"+userid+"?catid="+categoryid)
     .toPromise().then(
       res => {  
         

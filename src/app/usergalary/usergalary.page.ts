@@ -137,34 +137,55 @@ valuetext="";
   //////
   listsave:imageObject[]=[];
 
+checkedRadio=false;
+ichecked='radio';
+radioChecked(num:number){
+  if(num==1)
+  {
+    this.ichecked='other';}
+    else{
+      this.ichecked='radio';
+    }
+}
 
 //saves the object name
-  saveObj(event,ob){
+  saveObj(){
     debugger;
-    if(event.currentTarget.checked && ob!=null){
+    this.ichecked;
+    var rad= document.getElementById("radio");
+    var oth= document.getElementById("other");
+    //console.log(oth.checked);
+    //console.log(rad.checked);
+    //if user added diffrent name to the object
+    if( this.ichecked=='other')
+    {
+      this.currentobject.Name=this.valuetext;
+    }
+    if(this.currentobject!=null){
       //save the clossest obj with the new name
-      this.clossestObj.Name=ob.Name;
-      if(this.listsave.find(it=>it.ImageID==this.clossestObj.ImageID)){//then obj wad exist in the list-delete!!
+      //this.clossestObj.Name=this.currentobject.Name;
+      //saving in list to post to DB
+      if(this.listsave.find(it=>it.ObjectId==this.currentobject.ObjectId)){//then obj wad exist in the list-delete!!
         let i; //if this object exist - delete and save the new!
-        for ( i = 0; i < this.listsave.length && this.listsave[i].ImageID!=this.clossestObj.ImageID ; i++) ;
+        for (i = 0; i < this.listsave.length && this.listsave[i].ObjectId!=this.currentobject.ObjectId ; i++) ;
           this.listsave.splice(i,1);
           debugger;
       }
       //insert to list
-      this.listsave.push(this.clossestObj);
+      this.listsave.push(this.currentobject);
     }
   }
-  saveObjOther(){
-    debugger;
-    this.clossestObj.Name=this.valuetext;
-      if(this.listsave.find(it=>it.ImageID==this.clossestObj.ImageID)){//then obj wad exist in the list-delete!!
-        let i; //if this object exist - delete and save the new!
-        for ( i = 0; i < this.listsave.length && this.listsave[i].ImageID!=this.clossestObj.ImageID ; i++) ;
-          this.listsave.splice(i,1);
-      }
-      //insert to list
-      this.listsave.push(this.clossestObj);
-  }
+  // saveObjOther(){
+  //   debugger;
+  //   this.currentobject.Name=this.valuetext;
+  //     if(this.listsave.find(it=>it.ObjectId==this.clossestObj.ObjectId)){//then obj wad exist in the list-delete!!
+  //       let i; //if this object exist - delete and save the new!
+  //       for ( i = 0; i < this.listsave.length && this.listsave[i].ObjectId!=this.clossestObj.ObjectId ; i++) ;
+  //         this.listsave.splice(i,1);
+  //     }
+  //     //insert to list
+  //     this.listsave.push(this.clossestObj);
+  // }
 
 
 
@@ -192,9 +213,10 @@ valuetext="";
     return new Promise(resolve => {
       setTimeout(() => {
         resolve(
-          //list Save
-           this.userserv.getListObject(13,this.imageBase64).then(data => {
+          //list Save imageBase64
+           this.userserv.postListObject(13,this.myimage1,this.listsave).then(data => {
             this.listObj = data;
+            this.spinner=false;
            debugger;
              console.log(this.listObj);
            })
@@ -206,14 +228,16 @@ valuetext="";
     var x = await this.resolveAfter4SecondsPostlist();
     //this.items = this.items;
   }
+  spinner=false;
   //send image to vision and recieve list of objects
   async sendToVision() {
+    this.spinner=true;
     var x = await this.resolveAfter4SecondsGetlist();
     this.items = this.items;
   }
   
 
- imageBase64;
+ imageBase64="r";
   OpenMyCamera(){
     
    
@@ -237,12 +261,16 @@ valuetext="";
   
       this.loadImage();
     }
-  
+  //send objectlist to server and update in db
+    saveInDB(){
+      this.postListObj();
 
+    }
 //border functions
 forObject(){
   debugger;
   for (let i = 0; i < this.listObj.length; i++) {
+    this.listObj[i].ObjectId=i;
     this.borderImage(this.listObj[i],i);
   }
 }
@@ -261,6 +289,7 @@ borderImage(obj:imageObject,Id){
   document.getElementById(Id).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
   "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent; ");
 }
+currentobject;
 makeTransparency(event,obj:imageObject){
   debugger;
   var mid=event.currentTarget.id;
@@ -273,6 +302,8 @@ makeTransparency(event,obj:imageObject){
     document.getElementById(mid).setAttribute("style","position:absolute;height:"+size.height+"px; width:"+size.width+"px;left:"
     +size.left+"px;top:"+offTop+"px;border:3px dashed rgb(4, 92, 70);background-color: #fff; opacity:0.3");
     }
+    this.showradio=true;
+    this.currentobject=obj;
 }
 
  

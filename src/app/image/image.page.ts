@@ -4,6 +4,7 @@ import{ImageServiceService}from '../image-service.service';
 import { Platform ,IonSlides,IonSlide} from '@ionic/angular';
 import {imageObject} from'../classes/Object'
 import { Router } from '@angular/router';
+import { image } from '../classes/image';
 
 @Component({
   selector: 'app-image',
@@ -34,6 +35,8 @@ export class ImagePage implements OnInit {
   imageheight: any;
   color="";
   index:number;
+  right=false;
+  left=false;
 
   slideOpts = {
     initialSlide: 1,
@@ -63,33 +66,62 @@ export class ImagePage implements OnInit {
     this.images=imageserv.imagesArr;
     for (let index = 0; index < this.images.length; index++) {
       if(this.images[index].image.ImageID==this.ind)
-      {
+      { 
+        if(index!=0){
+        debugger;
         setTimeout(() => {
                 this.slides.slideTo(index);
                 this.bla=index;
-            }, 50);
+            }, 500);
        this.img=this.images[index];
+          }
+          else{
+            //first image edge case
+            this.img=this.images[0];
+          }
         break;
       }
       this.counter++;  
     }
+    this.listObj=this.images[this.counter].imageObjects;
     this.heigtscreen=platform.height();
     this.widthscreen=platform.width();
+    if(this.bla>0)
+    {
+      this.left=true;
+    }
+    if(this.images.length<this.bla)
+    {
+      this.right=true;
+    }
   }
   slideHappened(event){
   this.slides.getActiveIndex().then(
     (index)=>{
-      this.bla = index+1;
+      this.bla = index;
+      
    });
    debugger;
-  this.forObject();
-
+   this.listObj=[];
+   if(this.bla>0)
+    {
+      this.left=true;
+    }
+    if(this.images.length<this.bla)
+    {
+      this.right=true;
+    }
+   this.listObj=this.images[this.bla].imageObjects;
+  //this.forObject();
+  for (let i = 0; i < this.listObj.length; i++) {
+  var mydiv='div'+i;
+  document.getElementById(mydiv).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
+  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent;z-index:12;display:none; ");
+ }
 }
 
 
-next(slide, index){
-  slide.SlideTo(index);
-}
+
 
 
 
@@ -194,7 +226,7 @@ imagelocked=false;
   
   this.imagewidth=this.elementinfo.width;
   this.imageheight=this.elementinfo.height;
-   document.getElementById("ooo").setAttribute("style",";margin-top:0.5%;color:blue;font-size:250%");
+   //document.getElementById("ooo").setAttribute("style",";margin-top:0.5%;color:blue;font-size:250%");
   
   this.findobject();
   
@@ -273,10 +305,23 @@ imagelocked=false;
       this.router.navigate(['categoryimages']);
     }
     GoRight(){
-
+      if(this.bla!=0)
+{
+      setTimeout(() => {
+        this.slides.slideTo(this.bla+1);
+    }, 500);
+this.img=this.images[this.bla+1];
+  }
     }
     GoLeft(){
-
+      if(this.images.length!=this.bla)
+      {
+      setTimeout(() => {
+        this.slides.slideTo(this.bla-1);
+    }, 500);
+this.img=this.images[this.bla-1];
+  }
+  
     }
 
   ngOnInit() {
@@ -320,8 +365,9 @@ pause=true;
   }
   //border functions
 forObject(){
- this.listObj= this.images[this.bla].imageObjects
   debugger;
+ this.listObj= this.images[this.bla].imageObjects
+  
   for (let i = 0; i < this.listObj.length; i++) {
     this.borderImage(this.listObj[i],i);
   }
@@ -340,12 +386,13 @@ borderImage(obj:imageObject,Id){
   this.sizeH=(obj.Y4-obj.Y1)*this.imageheight;
   //change the bounding box of the object from code-ts!
   var mydiv='div'+Id;
-  document.getElementById(mydiv).innerText="blaaaaa";
   document.getElementById(mydiv).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
-  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent; ");
+  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent;z-index:12; ");
 }
 makeTransparency(event,obj:imageObject){
   debugger;
+  if(this.imagelocked==false){
+    this.imagelocked=true;
   var mid=event.currentTarget.id;
   console.log(event.currentTarget);
   if(mid!=null){
@@ -354,8 +401,18 @@ makeTransparency(event,obj:imageObject){
     this.forObject();//all the element dont change, l'm here:
     var size= document.getElementById(mid).getBoundingClientRect();
     document.getElementById(mid).setAttribute("style","position:absolute;height:"+size.height+"px; width:"+size.width+"px;left:"
-    +size.left+"px;top:"+offTop+"px;border:3px dashed rgb(4, 92, 70);background-color: #fff; opacity:0.3");
-    }
+    +size.left+"px;top:"+offTop+"px;border:3px dashed rgb(4, 92, 70);background-color: #fff; opacity:0.3;z-index:12; ");
+    this.initVoice(obj.VoiceURL);
+    if(this.categoryserv.pause)
+      {
+        this.stopBack();
+        this.categoryserv.pause=true;
+      }
+    this.playAudio();
+  }
+  
+  } 
+   this.imagelocked=false;
 }
 
 }
