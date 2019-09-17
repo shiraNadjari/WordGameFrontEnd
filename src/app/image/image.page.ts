@@ -49,7 +49,7 @@ export class ImagePage implements OnInit {
   locTop: number;
   sizeW: number;
   sizeH: number;
-
+color1="E91E63"
   constructor(private imageserv:ImageServiceService,
     private categoryserv:CategoryServiceService,
     private platform:Platform,
@@ -454,7 +454,7 @@ makeTransparency(event,obj:imageObject){
   }
   
   } 
-   this.imagelocked=false;
+  //  this.imagelocked=false;
 }
 
 }

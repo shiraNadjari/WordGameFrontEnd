@@ -6,45 +6,51 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
-<div style="font-size: 100px;margin-left: 40%" >
-    <ion-icon name="camera" (click)="OpenMyCamera()"></ion-icon></div>
-    <div *ngIf="spinner" style="size:34px;background-color: transparent;margin-left: 40%" ><ion-spinner name="bubbles"></ion-spinner></div><br>
+<ion-content padding  style="--background:url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;">
+  <!-- <div>{{imageBase64}}</div> -->
+  <div id="imagediv">
+<div style="font-size: 100px;margin-left: 45%;" >
+    <ion-icon name="camera"  (click)="OpenMyCamera()"></ion-icon></div>
+    <div *ngIf="spinner" style="size:34px;background-color: transparent;margin-top: 10%;margin-left: 30%; position: absolute;" ><ion-spinner name="bubbles" ></ion-spinner></div><br>
     <!-- <ion-icon name="camera"></ion-icon> -->
     <!-- <div (click)="OpenMyGalary()">MyGalary</div> -->
-    <img  [src]="myimage" id="image" style="max-width: 55%;border: 2px;border-radius: 20%
-    ;margin-left: 23%;" (click)="findlocation($event)"/>
-    <ion-button *ngIf="myimage" (click)="sendToVision()" style="left: -274px;margin-right: 13px;">Find Objects</ion-button>
+    <img  [src]="image" id="image" style="margin-left: 45%;max-width: 55%;border: 2px;border-radius: 20%
+    ;margin-left: 31%;border:solid;border-width: 3px"/>
+    
+    <ion-button *ngIf="spinner==false&&listFull" (click)="sendToVision()" style="left: -274px;margin-right: 13px;margin-top: -18%;margin-left: -23%;">Find Objects</ion-button>
+    <ion-button *ngIf="viewlist" (click)="forObject()" style="left: -274px;margin-right: 13px;margin-top: -18%;margin-left: -23%;">View Results</ion-button>
+    
     <!-- <p id="boxid" class="onImageBorder"  *ngIf="showBox"></p> -->
     <div  >
-      <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" [id]="i">=
+      <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" [id]="i">
       </div>
     </div>
-    <ion-button  *ngIf="myimage"  (click)="forObject()">bla</ion-button>
-
-    <!-- *ngIf="showradio" -->
-    <div >
+  </div>
+    
+    <div *ngIf="showradio" style="border:solid;width:20%;background-color: white">
     <ion-radio-group >
-      <ion-item>
+      <ion-item style="background-color:transparent">
         <ion-label>
             {{currentobject.Name}}
         </ion-label>
-        <ion-radio id="radio" [checked]="ichecked==='radio'" (click)="radioChecked(0)"checked slot="start" >
+        <ion-radio  id="radio" [checked]="ichecked=='radio'" (click)="radioChecked(0)"checked slot="start" >
         </ion-radio>
       </ion-item>
-      <ion-item>
+      <ion-item style="background-color:transparent">
         <ion-label>
+          Other
         </ion-label>
-       <ion-radio id="other" [checked]="ichecked==='other'" (click)="radioChecked(1)" checked slot="start">
+       <ion-radio id="other" [checked]="ichecked=='other'" (click)="radioChecked(1)" checked slot="start">
        </ion-radio>
       </ion-item>
     </ion-radio-group>
-  <input type="text"[(ngModel)]="valuetext" />enter     
+  <input type="text"[(ngModel)]="valuetext" *ngIf="ichecked=='other'" style="margin-left:11%"/>
+  <br>     
     <!-- <ion-input placeholder="Other" [(ngModel)]="valuetext"></ion-input> -->
-    <ion-button (click)="saveObj()"> save object</ion-button>
-   <ion-button (click)="saveInDB()">save</ion-button>
+    <ion-icon style="font-size: 60px;margin-left: 35%;" name="checkmark-circle-outline" (click)="saveObj()"></ion-icon>
+    
   </div>
+  <ion-button (click)="saveInDB()">save</ion-button>
 
 </ion-content>
 

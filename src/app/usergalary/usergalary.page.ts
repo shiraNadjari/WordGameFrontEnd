@@ -32,7 +32,7 @@ locBottom;
 padding;
 input:Boolean=false;
 showradio:Boolean=false;
-valuetext="";
+valuetext="Enter Object Name";
   items: any;
   constructor(private camera:Camera, public platform:Platform,private userserv: UsergalaryServiceService) { }
 
@@ -151,6 +151,7 @@ radioChecked(num:number){
 //saves the object name
   saveObj(){
     debugger;
+    this.showradio=false;
     this.ichecked;
     var rad= document.getElementById("radio");
     var oth= document.getElementById("other");
@@ -188,7 +189,8 @@ radioChecked(num:number){
   // }
 
 
-
+  listFull=true;
+  viewlist=false;
   saveInVision(){
     //service call - save in storage!!
     this.postListObj();
@@ -199,10 +201,12 @@ radioChecked(num:number){
       setTimeout(() => {
         resolve(
           //img ,id ,cat id
-           this.userserv.getListObject(13,this.myimage1).then(data => {
+           this.userserv.getListObject(13,this.imageBase64).then(data => {
              this.listObj = data;
-            this.forObject();
+             this.spinner=false;
             debugger;
+             document.getElementById("image").setAttribute("style","max-width: 55%;border: 2px;border-radius: 20%;margin-left: 31%;border:solid;border-width: 3px;");
+             this.viewlist=true;
              console.log(this.listObj);
           })
         );
@@ -214,9 +218,9 @@ radioChecked(num:number){
       setTimeout(() => {
         resolve(
           //list Save imageBase64
-           this.userserv.postListObject(13,this.myimage1,this.listsave).then(data => {
+           this.userserv.postListObject(13,this.imageBase64,this.listsave).then(data => {
             this.listObj = data;
-            this.spinner=false;
+         
            debugger;
              console.log(this.listObj);
            })
@@ -231,16 +235,19 @@ radioChecked(num:number){
   spinner=false;
   //send image to vision and recieve list of objects
   async sendToVision() {
+    debugger;
+   this.listFull=false;
+    document.getElementById("image").setAttribute("style","max-width: 55%;border: 2px;border-radius: 20%;margin-left: 31%;opacity:0.4;border:solid;border-width: 3px;");
+    this.listObj=[];
     this.spinner=true;
     var x = await this.resolveAfter4SecondsGetlist();
     this.items = this.items;
   }
   
-
- imageBase64="r";
+ baseimage;
+ imageBase64;
   OpenMyCamera(){
-    
-   
+
       const options: CameraOptions = {
         quality: 100,
         destinationType: this.camera.DestinationType.DATA_URL,
@@ -253,6 +260,7 @@ radioChecked(num:number){
        // If it's base64 (DATA_URL):
        debugger;
       //  
+      this.baseimage=imageData;
        this.imageBase64=imageData;
        this.image ='data:image/jpeg;base64,'+  imageData;
       }, (err) => {
@@ -269,6 +277,7 @@ radioChecked(num:number){
 //border functions
 forObject(){
   debugger;
+  this.viewlist=false;
   for (let i = 0; i < this.listObj.length; i++) {
     this.listObj[i].ObjectId=i;
     this.borderImage(this.listObj[i],i);
@@ -287,11 +296,13 @@ borderImage(obj:imageObject,Id){
   this.sizeH=(obj.Y4-obj.Y1)*this.imageheight;
   //change the bounding box of the object from code-ts!
   document.getElementById(Id).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
-  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent; ");
+  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid black; background-color:transparent; ");
 }
 currentobject;
 makeTransparency(event,obj:imageObject){
   debugger;
+  //imagediv
+  this.showradio=true;
   var mid=event.currentTarget.id;
   console.log(event.currentTarget);
   if(mid!=null){
@@ -300,9 +311,9 @@ makeTransparency(event,obj:imageObject){
     this.forObject();//all the element dont change, l'm here:
     var size= document.getElementById(mid).getBoundingClientRect();
     document.getElementById(mid).setAttribute("style","position:absolute;height:"+size.height+"px; width:"+size.width+"px;left:"
-    +size.left+"px;top:"+offTop+"px;border:3px dashed rgb(4, 92, 70);background-color: #fff; opacity:0.3");
+    +size.left+"px;top:"+offTop+"px;border:3px dashed black;background-color: #fff; opacity:0.3");
     }
-    this.showradio=true;
+    
     this.currentobject=obj;
 }
 

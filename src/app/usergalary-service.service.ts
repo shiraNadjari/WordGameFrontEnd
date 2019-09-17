@@ -7,7 +7,7 @@ import {imageObject} from '../app/classes/Object'
   providedIn: 'root'
 })
 export class UsergalaryServiceService {
-
+  imageBase64;
   constructor(private http:HttpClient) { }
   // getListObject(userId:number,image:string): any {
   //   return this.http.get("http://a9a4e49c.ngrok.io/api/Users/"+userId+"/6"+image)
@@ -21,7 +21,7 @@ export class UsergalaryServiceService {
  postListObject(userId:number,base64:string,listObj:imageObject[]): any {
     listObj[0].VoiceURL=base64;
     debugger;
-    return this.http.post("http://3606ba4b.ngrok.io/api/UserObject/"+userId+"?catid=51",listObj)
+    return this.http.post("http://a1385f55.ngrok.io/api/UserObject/"+userId+"?catid=51",listObj)
     .toPromise().then(
       res => { 
         //this.imagesArr=res;
@@ -29,13 +29,18 @@ export class UsergalaryServiceService {
         return res; })
       .catch(err => { return false;})
   }
-getListObject(userId:number,base64:string): Promise<any> {
+  img:image;
+getListObject(userId:number,base64:any): Promise<any> {
   debugger;
-let img=new image(0,base64,0,0,0);
+  //  if(base64.length>1)
+  //    base64+="hello";
+    //var a=base64;
+  this.img=new image(0,base64,0,0,0);
+  // alert(this.img);
   const headers = new HttpHeaders ({'Content-Type': 'application/json'});
     return this.http
     
-    .post('http://3606ba4b.ngrok.io/api/Users/'+userId+"?catid=51",img,{headers:headers}).toPromise().then(
+    .post('http://a1385f55.ngrok.io/api/Users/'+userId+"?catid=51",this.img,{headers:headers}).toPromise().then(
       response => {
       return response;
     })

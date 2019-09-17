@@ -27,7 +27,7 @@ export class CategoryServiceService {
   // get all the categories 
   getcategories(): any {
 
-    return this.http.get("http://3606ba4b.ngrok.io//api/Categories/")
+    return this.http.get("http://a1385f55.ngrok.io//api/Categories/")
     .toPromise().then(
       res => { 
         this.cateroriesArr=res;

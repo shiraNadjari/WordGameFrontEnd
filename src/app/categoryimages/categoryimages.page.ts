@@ -25,6 +25,7 @@ displayCurr:boolean=true;
 display: boolean=true;
 sub;
 color="";
+color1="rgb(14, 234, 241)"
 IsPlaying=true;
 constructor(public router:ActivatedRoute,
   private servcategory:CategoryServiceService,
@@ -36,7 +37,7 @@ constructor(public router:ActivatedRoute,
   debugger;
 this.categoryname=servcategory.onecategory.CategoryName;
 this.categoryId=servcategory.onecategory.CategoryId;
-this.color=this.servcategory.color;
+
 
   //get number of pages
   this.getnumpages();
@@ -85,6 +86,8 @@ resolveAfter4Secondsimages() {
       resolve(
         this.servImage.getImagesByCategory(this.userid,this.categoryId).then(data => {
           this.imagesArrLoad = data;
+          this.color=this.servcategory.color;
+          this.color1=this.servcategory.color;
           console.log(this.imagesArrLoad);
 
           console.log(this.numOfPages);
