@@ -13,7 +13,7 @@ export class ImageServiceService {
   getImagesByCategory(userid:number,categoryid:number): any {
     debugger;
     
-    return this.http.get("http://044fab2d.ngrok.io/api/Images/GetImages/"+userid+"?catid="+categoryid)
+    return this.http.get("http://3606ba4b.ngrok.io/api/Images/GetImages/"+userid+"?catid="+categoryid)
     .toPromise().then(
       res => {  
         

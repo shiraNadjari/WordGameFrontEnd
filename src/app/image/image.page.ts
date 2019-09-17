@@ -37,7 +37,7 @@ export class ImagePage implements OnInit {
   index:number;
   right=false;
   left=false;
-
+  ImageNumber="1";
   slideOpts = {
     initialSlide: 1,
     speed: 400
@@ -67,57 +67,84 @@ export class ImagePage implements OnInit {
     for (let index = 0; index < this.images.length; index++) {
       if(this.images[index].image.ImageID==this.ind)
       { 
+       
         if(index!=0){
         debugger;
         setTimeout(() => {
                 this.slides.slideTo(index);
                 this.bla=index;
+                // this.ImageNumber=(index+1)+"";
+              //  document.getElementById("ImageNumber").innerHTML=this.ImageNumber;
+                this.listObj=this.images[this.counter].imageObjects;
+      
+
             }, 500);
        this.img=this.images[index];
           }
           else{
             //first image edge case
             this.img=this.images[0];
+            this.bla=0;
+            this.bla=index;
+            this.listObj=this.images[0].imageObjects;
+            //  this.ImageNumber=(this.bla+1)+"";
+          
+            // document.getElementById("ImageNumber").innerHTML=this.ImageNumber;
+
           }
         break;
       }
       this.counter++;  
     }
-    this.listObj=this.images[this.counter].imageObjects;
+    debugger;
     this.heigtscreen=platform.height();
     this.widthscreen=platform.width();
     if(this.bla>0)
     {
       this.left=true;
     }
-    if(this.images.length<this.bla)
+    if(this.images.length-1>this.bla)
     {
       this.right=true;
     }
   }
   slideHappened(event){
+    debugger;
+  this.listObj=[];
   this.slides.getActiveIndex().then(
     (index)=>{
+      debugger;
       this.bla = index;
-      
+      this.listObj=this.images[this.bla].imageObjects;
+      // this.ImageNumber=(this.bla+1)+"";
+      debugger;
+        if(this.bla>0)
+        {
+          this.left=true;
+        }
+        else{
+          this.left=false;
+        }
+        if(this.images.length-1>this.bla)
+        {
+          this.right=true;
+        }
+        else{
+          this.right=false;
+        }
+    //  document.getElementById("ImageNumber").innerHTML=this.ImageNumber;
    });
    debugger;
-   this.listObj=[];
-   if(this.bla>0)
-    {
-      this.left=true;
-    }
-    if(this.images.length<this.bla)
-    {
-      this.right=true;
-    }
-   this.listObj=this.images[this.bla].imageObjects;
+        //show arrow 
+        
+   //this.listObj=this.images[this.bla].imageObjects;
   //this.forObject();
   for (let i = 0; i < this.listObj.length; i++) {
   var mydiv='div'+i;
   document.getElementById(mydiv).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
   "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent;z-index:12;display:none; ");
- }
+ 
+}
 }
 
 
@@ -305,21 +332,36 @@ imagelocked=false;
       this.router.navigate(['categoryimages']);
     }
     GoRight(){
-      if(this.bla!=0)
+      debugger;
+      if(this.bla<this.images.length-1)
 {
       setTimeout(() => {
         this.slides.slideTo(this.bla+1);
+        this.bla+=1;
+        this.img=this.images[this.bla];
+        this.listObj=this.images[this.bla].imageObjects;
+     
     }, 500);
-this.img=this.images[this.bla+1];
+// this.ImageNumber=(this.bla+1)+"";
+// document.getElementById("ImageNumber").innerHTML=this.ImageNumber;
+
+
   }
     }
     GoLeft(){
-      if(this.images.length!=this.bla)
+      debugger;
+      if(this.bla>0)
       {
       setTimeout(() => {
         this.slides.slideTo(this.bla-1);
+        this.bla-=1;
+        this.img=this.images[this.bla];
+        this.listObj=this.images[this.bla].imageObjects;
     }, 500);
-this.img=this.images[this.bla-1];
+  //  this.ImageNumber=(this.bla-1)+"";
+// document.getElementById("ImageNumber").innerHTML=this.ImageNumber;
+
+
   }
   
     }
@@ -366,7 +408,7 @@ pause=true;
   //border functions
 forObject(){
   debugger;
- this.listObj= this.images[this.bla].imageObjects
+ this.listObj= this.images[this.bla].imageObjects;
   
   for (let i = 0; i < this.listObj.length; i++) {
     this.borderImage(this.listObj[i],i);
@@ -387,7 +429,7 @@ borderImage(obj:imageObject,Id){
   //change the bounding box of the object from code-ts!
   var mydiv='div'+Id;
   document.getElementById(mydiv).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
-  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent;z-index:12; ");
+  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid black; background-color:transparent;z-index:12; ");
 }
 makeTransparency(event,obj:imageObject){
   debugger;

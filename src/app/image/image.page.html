@@ -17,10 +17,10 @@
 <div id="bla"  style="background-size: cover;">
   <ion-slides (ionSlideDidChange)="slideHappened($event)"  id="slides"   style="position: relative" ##sliderRef>   
       <ion-slide  *ngFor="let item of images; let i=index" >
-        <div class="fontborder" [style.color]="color" style="margin-top:-15%;margin-left: -25%;font-size: xx-large;position: absolute;">{{index}}</div>
+        <div  id="imagenumber" class="fontborder" [style.color]="color" style="margin-top:-15%;margin-left: -25%;font-size: xx-large;position: absolute;" ></div>
         <img (click)="GoLeft()" *ngIf="left" src="../../assets/arrowleft.png" style="width: 15%;margin-left: -20%"/>
 
-        <img  (click)='findclickcoordinants($event)' id="{{i}}" [src]="item.image.URL" style="border-radius: 10%; margin-top:1%;margin-left: 2%; border-color: black;border-style: groove;border-width: thick;height: 100%;padding-top: 0.5%;width: 60%;align-self: center;-webkit-background-size:cover" />
+        <img  (click)='forObject()' id="{{i}}" [src]="item.image.URL" style="border-radius: 10%; margin-top:1%;margin-left: 2%; border-color: black;border-style: groove;border-width: thick;height: 100%;padding-top: 0.5%;width: 60%;align-self: center;-webkit-background-size:cover" />
    
         <!-- <div (swipe)="($event.offsetDirection  == 4) ? goback():goforward()" *ngIf="img" id="image" (click)="findclickcoordinants($event)" [ngStyle]="{'background-image':'url('+ item.image.URL +')'}" style="margin-left:20%;height: 100%;padding-top: 1%;width: 60%;align-self: center;-webkit-background-size:cover"> -->
         <!-- <p id="ooo" > {{NameObject}}</p>  -->
@@ -30,11 +30,11 @@
    </ion-slide>
   </ion-slides>
   <div *ngIf="listObj" >
-    <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" id="{{'div'+i}}">==
+    <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" id="{{'div'+i}}">
 
     </div>
   </div>
-<button (click)="forObject()">hello</button>
+
  <br>
  <br>
  <br>
