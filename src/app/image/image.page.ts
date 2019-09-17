@@ -44,6 +44,7 @@ export class ImagePage implements OnInit {
   };
   slide:IonSlides;
   listObj: any;
+  clickfinger=true;
   elementimage: ClientRect | DOMRect;
   locLeft: number;
   locTop: number;
@@ -408,6 +409,7 @@ pause=true;
   //border functions
 forObject(){
   debugger;
+  this.clickfinger=false
  this.listObj= this.images[this.bla].imageObjects;
   
   for (let i = 0; i < this.listObj.length; i++) {

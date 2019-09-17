@@ -11,14 +11,14 @@
   <div id="imagediv">
 <div style="font-size: 100px;margin-left: 45%;" >
     <ion-icon name="camera"  (click)="OpenMyCamera()"></ion-icon></div>
-    <div *ngIf="spinner" style="size:34px;background-color: transparent;margin-top: 10%;margin-left: 30%; position: absolute;" ><ion-spinner name="bubbles" ></ion-spinner></div><br>
+    <div *ngIf="spinner" style="size:34px;background-color: transparent;margin-top: 5%;margin-left: 50%; position: absolute;" ><ion-spinner name="bubbles" ></ion-spinner></div><br>
     <!-- <ion-icon name="camera"></ion-icon> -->
     <!-- <div (click)="OpenMyGalary()">MyGalary</div> -->
     <img  [src]="image" id="image" style="margin-left: 45%;max-width: 55%;border: 2px;border-radius: 20%
-    ;margin-left: 31%;border:solid;border-width: 3px"/>
+    ;margin-left: 22%;border:solid;border-width: 3px"/>
     
-    <ion-button *ngIf="spinner==false&&listFull" (click)="sendToVision()" style="left: -274px;margin-right: 13px;margin-top: -18%;margin-left: -23%;">Find Objects</ion-button>
-    <ion-button *ngIf="viewlist" (click)="forObject()" style="left: -274px;margin-right: 13px;margin-top: -18%;margin-left: -23%;">View Results</ion-button>
+    <ion-button *ngIf="spinner==false&&listFull&&sendvisionbtn" (click)="sendToVision()" style="left: -274px;margin-right: 13px;margin-top: -18%;margin-left: -23%;">Find Objects</ion-button>
+    <ion-button *ngIf="viewlist" (click)="forObject()" style="left: -274px;margin-right: 13px;margin-top: -18%;margin-left: -15%;">View Results</ion-button>
     
     <!-- <p id="boxid" class="onImageBorder"  *ngIf="showBox"></p> -->
     <div  >
@@ -27,7 +27,7 @@
     </div>
   </div>
     
-    <div *ngIf="showradio" style="border:solid;width:20%;background-color: white">
+    <div *ngIf="showradio" style="margin-top:-30%;border:solid;width:20%;background-color: white">
     <ion-radio-group >
       <ion-item style="background-color:transparent">
         <ion-label>
@@ -50,7 +50,7 @@
     <ion-icon style="font-size: 60px;margin-left: 35%;" name="checkmark-circle-outline" (click)="saveObj()"></ion-icon>
     
   </div>
-  <ion-button (click)="saveInDB()">save</ion-button>
+  <ion-button *ngIf="sendtodb" (click)="saveInDB()">Save Image</ion-button>
 
 </ion-content>
 

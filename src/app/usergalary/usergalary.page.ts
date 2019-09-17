@@ -32,6 +32,8 @@ locBottom;
 padding;
 input:Boolean=false;
 showradio:Boolean=false;
+sendvisionbtn=false;
+sendtodb=false;
 valuetext="Enter Object Name";
   items: any;
   constructor(private camera:Camera, public platform:Platform,private userserv: UsergalaryServiceService) { }
@@ -152,6 +154,7 @@ radioChecked(num:number){
   saveObj(){
     debugger;
     this.showradio=false;
+    this.sendtodb=true;
     this.ichecked;
     var rad= document.getElementById("radio");
     var oth= document.getElementById("other");
@@ -205,7 +208,7 @@ radioChecked(num:number){
              this.listObj = data;
              this.spinner=false;
             debugger;
-             document.getElementById("image").setAttribute("style","max-width: 55%;border: 2px;border-radius: 20%;margin-left: 31%;border:solid;border-width: 3px;");
+             document.getElementById("image").setAttribute("style","max-width: 55%;border: 2px;border-radius: 20%;margin-left: 22%;border:solid;border-width: 3px;");
              this.viewlist=true;
              console.log(this.listObj);
           })
@@ -237,7 +240,7 @@ radioChecked(num:number){
   async sendToVision() {
     debugger;
    this.listFull=false;
-    document.getElementById("image").setAttribute("style","max-width: 55%;border: 2px;border-radius: 20%;margin-left: 31%;opacity:0.4;border:solid;border-width: 3px;");
+    document.getElementById("image").setAttribute("style","max-width: 55%;border: 2px;border-radius: 20%;margin-left: 22%;opacity:0.4;border:solid;border-width: 3px;");
     this.listObj=[];
     this.spinner=true;
     var x = await this.resolveAfter4SecondsGetlist();
@@ -263,6 +266,7 @@ radioChecked(num:number){
       this.baseimage=imageData;
        this.imageBase64=imageData;
        this.image ='data:image/jpeg;base64,'+  imageData;
+       this.sendvisionbtn=true;
       }, (err) => {
        // Handle error
       });
