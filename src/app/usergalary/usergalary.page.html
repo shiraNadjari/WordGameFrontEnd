@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>My Pictures</ion-title>
-    <!-- <img style="width:2%;margin-left: 95%;" (click)="playAudioBack()" *ngIf="categoryserv.play" src='../../assets/play.jpg'>
-    <img style="width:2%;margin-left: 95%;" (click)="stopBack()" *ngIf="categoryserv.pause" src='../../assets/pause (2).jpg'> -->
+     <img style="width:2%;margin-left: 95%;" (click)="playAudio()" *ngIf="servCategory.play" src='../../assets/play.jpg'> 
+    <img style="width:2%;margin-left: 95%;" (click)="stop()" *ngIf="servCategory.pause" src='../../assets/pause (2).jpg'> 
+    <ion-icon name="home" style="width:3%;"(click)="GoBackHome()"></ion-icon>
+ 
   </ion-toolbar>
+  <ion-icon  name="arrow-back" style="margin-right: 100%" (click)="GoBackPage()" ></ion-icon>       
+
 </ion-header>
 
 <ion-content padding  style="--background:url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;">

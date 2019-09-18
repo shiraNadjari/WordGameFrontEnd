@@ -8,8 +8,17 @@ import{CategoryServiceService} from '../category-service.service'
 })
 export class UserPage implements OnInit {
 
-  constructor(private router:Router,public servCategory:CategoryServiceService) { }
+  constructor(private router:Router,public servCategory:CategoryServiceService) { 
+    if (servCategory.IsPlaying)
+    {
+      this.pause=true;
+      this.play1=false
+    }
+  }
 
+  GoBack(){
+    this.router.navigate(['category']);
+  }
   ngOnInit() {
   }
   openMyImages(){

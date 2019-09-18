@@ -40,7 +40,7 @@ getListObject(userId:number,base64:any): Promise<any> {
   const headers = new HttpHeaders ({'Content-Type': 'application/json'});
     return this.http
     
-    .post('http://a1385f55.ngrok.io/api/Users/'+userId+"?catid=51",this.img,{headers:headers}).toPromise().then(
+    .post('http://a4c01f7c.ngrok.io/api/Users/'+userId+"?catid=51",this.img,{headers:headers}).toPromise().then(
       response => {
       return response;
     })
