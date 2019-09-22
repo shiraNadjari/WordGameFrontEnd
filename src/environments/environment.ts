@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseRoute:"http://c50473d4.ngrok.io/api/"
+  baseRoute:"http://1f949408.ngrok.io/api/"
 };
 
 /*
