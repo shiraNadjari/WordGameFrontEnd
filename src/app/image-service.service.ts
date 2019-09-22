@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import{imageWithObject} from '../../src/app/classes/imageWithObject'
-
+import{environment} from '../environments/environment'
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +13,7 @@ export class ImageServiceService {
   getImagesByCategory(userid:number,categoryid:number): any {
     debugger;
     
-    return this.http.get("http://34.77.45.90/api/Images/GetImages/"+userid+"?catid="+categoryid)
+    return this.http.get(environment.baseRoute+"Images/GetImages/"+userid+"?catid="+categoryid)
     .toPromise().then(
       res => {  
         

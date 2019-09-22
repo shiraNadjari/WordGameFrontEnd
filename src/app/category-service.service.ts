@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {category} from '../app/classes/category'
 import { from } from 'rxjs';
+import {environment}from '../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class CategoryServiceService {
   // get all the categories 
   getcategories(): any {
 
-    return this.http.get("http://34.77.45.90/api/Categories/")
+    return this.http.get(environment.baseRoute+"Categories/")
     .toPromise().then(
       res => { 
         this.cateroriesArr=res;
