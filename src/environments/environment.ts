@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  baseRoute:"http://c50473d4.ngrok.io/api/"
+  //baseRoute:"http://c50473d4.ngrok.io/api/"
+  baseRoute:"http://localhost:52093/api/"
+
 };
 
 /*
