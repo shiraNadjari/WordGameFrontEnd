@@ -19,7 +19,7 @@ export class CategoryServiceService {
   pause=true;
   //get num pages of this category-by category id 
   getNumPageByCategoryId(categoryId:number): any {
-    return this.http.get("http://localhost:52093//api/Categories/"+categoryId).toPromise().then(
+    return this.http.get("http://34.77.45.90//api/Categories/"+categoryId).toPromise().then(
       res => { return res;})
       .catch(err => { return false;})
   }
@@ -27,7 +27,7 @@ export class CategoryServiceService {
   // get all the categories 
   getcategories(): any {
 
-    return this.http.get("http://a4c01f7c.ngrok.io//api/Categories/")
+    return this.http.get("http://34.77.45.90//api/Categories/")
     .toPromise().then(
       res => { 
         this.cateroriesArr=res;

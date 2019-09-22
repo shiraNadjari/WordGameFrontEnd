@@ -34,7 +34,7 @@ locBottom;
 padding;
 input:Boolean=false;
 showradio:Boolean=false;
-sendvisionbtn=false;
+sendvisionbtn=true;
 sendtodb=false;
 valuetext="Enter Object Name";
   items: any;
@@ -132,11 +132,11 @@ valuetext="Enter Object Name";
   x;
   y;
   //show list of names of specific object
-  findlocation(event){
+  findlocation(event){//כלום לא מקבלx:numer,y:number
     this.listIn=[]
     debugger;
-    this.x=event.clientX;//the click position that the user  made-x
-    this.y=event.clientY;//" y
+    // this.x=event.clientX;//the click position that the user  made-x
+    // this.y=event.clientY;//
     this.elementinfo=document.getElementById("image").getBoundingClientRect();
     this.y=this.y-this.elementinfo.top;
     this.x=this.x-this.elementinfo.left;
@@ -157,7 +157,6 @@ radioChecked(num:number){
       this.ichecked='radio';
     }
 }
-
 //saves the object name
   saveObj(){
     debugger;
@@ -166,8 +165,6 @@ radioChecked(num:number){
     this.ichecked;
     var rad= document.getElementById("radio");
     var oth= document.getElementById("other");
-    //console.log(oth.checked);
-    //console.log(rad.checked);
     //if user added diffrent name to the object
     if( this.ichecked=='other')
     {
@@ -186,6 +183,11 @@ radioChecked(num:number){
       //insert to list
       this.listsave.push(this.currentobject);
     }
+  }
+  removeObj(obj:imageObject){
+    let index;
+    for ( index = 0; index < this.listsave.length &&this.listsave[index].ObjectId!=obj.ObjectId; index++);
+    this.listsave.splice(index);//remove the object- by index from the list -
   }
   // saveObjOther(){
   //   debugger;
@@ -212,7 +214,7 @@ radioChecked(num:number){
       setTimeout(() => {
         resolve(
           //img ,id ,cat id
-           this.userserv.getListObject(13,this.imageBase64).then(data => {
+           this.userserv.getListObject(13,this.myimage1).then(data => {
              this.listObj = data;
              this.spinner=false;
             debugger;
@@ -229,7 +231,7 @@ radioChecked(num:number){
       setTimeout(() => {
         resolve(
           //list Save imageBase64
-           this.userserv.postListObject(13,this.imageBase64,this.listsave).then(data => {
+           this.userserv.postListObject(13,this.myimage1,this.listsave).then(data => {
             this.listObj = data;
          
            debugger;
@@ -313,8 +315,14 @@ borderImage(obj:imageObject,Id){
 currentobject;
 makeTransparency(event,obj:imageObject){
   debugger;
-  //imagediv
+  
+  // this.x=event.clientX;
+  // this.y=event.clientY;
+  // this.findlocation();
   this.showradio=true;
+  // let i ;
+  // for (i = 0; i < this.listObj.length&&this.listObj[i].ObjectId!=this.clossestObj.ObjectId; i++);
+  //   mid=i;//the div that we need -clossestObj!
   var mid=event.currentTarget.id;
   console.log(event.currentTarget);
   if(mid!=null){
@@ -325,7 +333,6 @@ makeTransparency(event,obj:imageObject){
     document.getElementById(mid).setAttribute("style","position:absolute;height:"+size.height+"px; width:"+size.width+"px;left:"
     +size.left+"px;top:"+offTop+"px;border:3px dashed black;background-color: #fff; opacity:0.3");
     }
-    
     this.currentobject=obj;
 }
 play1=false;

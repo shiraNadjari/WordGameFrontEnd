@@ -13,12 +13,17 @@
 <ion-content padding  style="--background:url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;">
   <!-- <div>{{imageBase64}}</div> -->
   <div id="imagediv">
-<div style="font-size: 100px;margin-left: 45%;" >
+  <div style="font-size: 100px;margin-left: 45%;" >
     <ion-icon name="camera"  (click)="OpenMyCamera()"></ion-icon></div>
-    <div *ngIf="spinner" style="size:34px;background-color: transparent;margin-top: 5%;margin-left: 50%; position: absolute;" ><ion-spinner name="bubbles" ></ion-spinner></div><br>
+    <div *ngIf="spinner"  style="size:34px;background-color: transparent;margin-top: 5%;margin-left: 50%; position: absolute; "  name="crescent">
+      <ion-spinner  style="width: 60px;height: 68px;" name="crescent" ></ion-spinner>
+</div><br>
+      <!-- <ion-spinner style="size:34px;background-color: transparent;margin-top: 5%;margin-left: 50%; position: absolute; width: 60px;height: 68px;"  name="crescent"  ></ion-spinner> -->
+
+
     <!-- <ion-icon name="camera"></ion-icon> -->
     <!-- <div (click)="OpenMyGalary()">MyGalary</div> -->
-    <img  [src]="image" id="image" style="margin-left: 45%;max-width: 55%;border: 2px;border-radius: 20%
+    <img  [src]="myimage" id="image" style="margin-left: 45%;max-width: 55%;border: 2px;border-radius: 20%
     ;margin-left: 22%;border:solid;border-width: 3px"/>
     
     <ion-button *ngIf="spinner==false&&listFull&&sendvisionbtn" (click)="sendToVision()" style="left: -274px;margin-right: 13px;margin-top: -18%;margin-left: -23%;">Find Objects</ion-button>
@@ -52,8 +57,15 @@
   <br>     
     <!-- <ion-input placeholder="Other" [(ngModel)]="valuetext"></ion-input> -->
     <ion-icon style="font-size: 60px;margin-left: 35%;" name="checkmark-circle-outline" (click)="saveObj()"></ion-icon>
-    
   </div>
+  <!-- /// -->
+  <!-- //display list of objects -->
+  <div *ngIf="listsave" style="border: solid rgb(163, 161, 161); width: 25%;">
+    <ion-list *ngFor="let i of listsave" style="width: 93%;">
+      <ion-item style="font-size: 15px;">{{i.Name}}<ion-button (click)="removeObj(i)" style="font-size: 11px; margin-left: 140px;">x</ion-button></ion-item>
+    </ion-list>
+    </div>
+    <!-- /// -->
   <ion-button *ngIf="sendtodb" (click)="saveInDB()">Save Image</ion-button>
 
 </ion-content>

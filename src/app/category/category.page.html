@@ -9,18 +9,15 @@
       
       <img style="width:3%;margin-left: 90%;" (click)="stop()" *ngIf="servCategory.pause" src='../../assets/pause (2).jpg'> 
       <!-- <div  style="font-size: x-large;padding-top: 5%;position: absolute;padding-left: 5%;color:turquoise" class="fontborder">UpWords</div> -->
-    
     </ion-toolbar>
   </ion-header>
 
-
-
+  
 <ion-content class="general"  style="--background:url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;" >
 
   <p *ngIf="items == 0" style="font-size: 500%;text-align: center">please wait...</p>
   <ion-spinner class="spinnerCenter" name="crescent" *ngIf="items == 0" ></ion-spinner>
    
-  
    <!-- <ion-grid  class="ion-no-padding"  style="margin-top: 1%;height: -webkit-full-available">
     <ion-row  style="height: -webkit-full-available;margin-left: 5%;margin-bottom: 0%" > 
       <ion-col style="height: -webkit-full-available" col-3 *ngFor="let item of aa" class="imgTxt">  

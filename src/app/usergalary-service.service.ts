@@ -21,7 +21,7 @@ export class UsergalaryServiceService {
  postListObject(userId:number,base64:string,listObj:imageObject[]): any {
     listObj[0].VoiceURL=base64;
     debugger;
-    return this.http.post("http://a1385f55.ngrok.io/api/UserObject/"+userId+"?catid=51",listObj)
+    return this.http.post("http://34.77.45.90/api/UserObject/"+userId+"?catid=51",listObj)
     .toPromise().then(
       res => { 
         //this.imagesArr=res;

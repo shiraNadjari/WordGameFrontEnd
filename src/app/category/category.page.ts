@@ -33,18 +33,22 @@ colors:string[];
     // private alertCtrl: AlertController,
     public navCtrl: NavController, 
     // public navParams: NavParams,
-
-     public servCategory:CategoryServiceService,
+    public servCategory:CategoryServiceService,
     private camera:Camera,public router:Router) {
-      this.screenorientation.lock(this.screenorientation.ORIENTATIONS.LANDSCAPE);
-      debugger;
-     this.initVoice()
-      this.getCategories();
+    this.screenorientation.lock(this.screenorientation.ORIENTATIONS.LANDSCAPE);
+    debugger;
+    this.initVoice()
+    this.getCategories();
    
     this.colors=[
     "rgb(127, 106, 38)","rgb(58,122,43)","rgb(122,43,43)","rgb(202,206,27)","rgb(198,102,38)","rgb(42,93,124)"
     ]
-     }
+    }
+    myList=[];
+    addmyList(){
+      debugger;
+      this.myList.push("hello!");
+    }
     //  gotopageusergalary(event){
     //   this.userId=12;
     //   // this.userId=
