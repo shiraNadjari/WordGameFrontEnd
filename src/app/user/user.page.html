@@ -10,19 +10,21 @@
 
 <ion-content class="general"  style="--background:url('../../assets/upWordsbackground.jpg');background-size: contain;   ">
 
-<button col-3 (click)="openMyImages()"  style="border-radius: 20% !important;border-style: solid;border-width: 10px;padding-right: 1%;padding-left: 1%;    margin-left: 8%;width: 35%;height: 50%;align-self: center;margin-top: 5%;border-color: rgb(42,93,124);background-color: white;" >
+<img col-3 (click)="openMyImages()" src="../../assets/galleryfinaly.jpg" style="border-radius: 20% !important;border-style: solid;border-width: 10px;padding-right: 1%;padding-left: 1%;    margin-left: 8%;width: 35%;height: 50%;align-self: center;margin-top: 5%;border-color: rgb(42,93,124);background-color: white;" >
   <!-- <div  style="color:white; text-align: center; width:40% ;left:2%;right:5%;font-family: Arial, Helvetica, sans-serif;font-size: 45px; position: absolute;top: 70%;font-size:5vw;background-color:  rgb(42,93,124);">My Images</div> -->
- <div style="background-color: rgb(42,93,124);width: 106%;margin-left: -3%; margin-top: 20%; height: 15%; font-size: 30px;color: white;">
+ <div style=" text-align: center;background-color: rgb(42,93,124);width: 33%;margin-left: 9%;margin-top: -13%;height: 8%;font-size: 30px;color: white;position: absolute;">
    My Images
  </div>
-</button>
+  <!-- <img (click)='itemTapped($event,item)' [src]="item.ImageURL" style="border-radius: 20% !important;   border-style: solid;border-width: 10px; padding-right: 1%;padding-left: 1%;width: 100%;height: 100%;align-self: center;margin-top: 5%; -webkit-background-size: cover;" [style.border-color]="colors[i]" /> -->
+<!-- </button> -->
 
-<button col-3  (click)="AddImages()" style="margin-left: 8%; border-radius: 20% !important;border-style: solid;border-width: 10px;padding-right: 1%;padding-left: 1%;    margin-left: 8%;width: 35%;height: 50%;align-self: center;margin-top: 10%;border-color: rgb(42,93,124);background-color: white;"> 
+
+<img col-3  (click)="AddImages()"  src="../../assets/cameraa.jpg" style="margin-left: 8%; border-radius: 20% !important;border-style: solid;border-width: 10px;padding-right: 1%;padding-left: 1%;    margin-left: 8%;width: 35%;height: 50%;align-self: center;margin-top: 10%;border-color: rgb(234, 107, 165);background-color: white;"> 
   <!-- <div  style="color:white; text-align: center; width:40% ;margin-left: 8%;margin-left: 6%;right:5%;font-family: Arial, Helvetica, sans-serif;font-size: 45px; position: absolute;top: 70%;font-size:5vw;background-color:  rgb(42,93,124);">  Add Image</div> -->
-  <div style="background-color: rgb(42,93,124);width: 106%;margin-left: -3%; margin-top: 20%; height: 15%; font-size: 30px;color: white;">
+  <div style="text-align: center; background-color: rgb(234, 107, 165);width: 33%;margin-left: 52%;margin-top: -13%;height: 8%;font-size: 30px;color: white;position: absolute;">
   Add Image
   </div>
-</button>
+<!-- </button> -->
 
 
 </ion-content>

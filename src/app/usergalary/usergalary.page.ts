@@ -135,7 +135,7 @@ valuetext="Enter Object Name";
   x;
   y;
   //show list of names of specific object
-  findlocation(event){//כלום לא מקבלx:numer,y:number
+  findlocation(){//כלום לא מקבלx:numer,y:number
     this.listIn=[]
     debugger;
     // this.x=event.clientX;//the click position that the user  made-x
@@ -240,9 +240,7 @@ file:File;
       setTimeout(() => {
         resolve(
           //img ,id ,cat id
-
-           this.userserv.getListObject(2,this.imageBase64).then(data => {
-
+           this.userserv.getListObject(2,this.myimage1).then(data => {
              this.listObj = data;
              this.spinner=false;
             debugger;
@@ -259,7 +257,7 @@ file:File;
       setTimeout(() => {
         resolve(
           //list Save imageBase64
-           this.userserv.postListObject(2,this.imageBase64,this.listsave).then(data => {
+           this.userserv.postListObject(2,this.myimage1,this.listsave).then(data => {
             this.listObj = [];
             this.spinner2=false;
             document.getElementById("image").setAttribute("style","margin-left:13%;max-width: 75%;border: 2px;border-radius: 20%;border:solid;border-width: 5px;margin-top:-5%");
@@ -357,15 +355,16 @@ makeTransparency(event,obj:imageObject){
   this.sendtodb=false;
   document.getElementById("image").setAttribute("style","margin-left:20%;max-width: 75%;border: 2px;border-radius: 20% ;border:solid;border-width: 5px;margin-top:-5%;");
   debugger;
-  
-  // this.x=event.clientX;
-  // this.y=event.clientY;
-  // this.findlocation();
   this.showradio=true;
-  // let i ;
-  // for (i = 0; i < this.listObj.length&&this.listObj[i].ObjectId!=this.clossestObj.ObjectId; i++);
-  //   mid=i;//the div that we need -clossestObj!
-  var mid=event.currentTarget.id;
+///
+  this.x=event.clientX;
+  this.y=event.clientY;
+  this.findlocation();//find the clossest object! what we need
+  let i ;
+  for (i = 0; i < this.listObj.length&&this.listObj[i].ObjectId!=this.clossestObj.ObjectId; i++);
+  var mid=i;//the div that we need -clossestObj!
+
+  // var mid=event.currentTarget.id;
   console.log(event.currentTarget);
   if(mid!=null){
    //console.log(document.getElementById(mid).getAttributeNames());
@@ -375,7 +374,7 @@ makeTransparency(event,obj:imageObject){
     document.getElementById(mid).setAttribute("style","position:absolute;height:"+size.height+"px; width:"+size.width+"px;left:"
     +size.left+"px;top:"+offTop+"px;border:3px dashed black;background-color: #fff; opacity:0.3");
     }
-    this.currentobject=obj;
+    this.currentobject=this.clossestObj;//obj
 }
 play1=false;
 playAudio() { 

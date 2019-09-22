@@ -25,6 +25,7 @@ export class UserPage implements OnInit {
     this.router.navigate(['categoryimages']);
   }
   AddImages(){
+    debugger;
     this.router.navigate(['usergalary']);
   }
   play1=false;
