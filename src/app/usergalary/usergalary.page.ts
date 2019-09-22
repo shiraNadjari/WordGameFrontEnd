@@ -35,7 +35,7 @@ padding;
 spinner2=false;
 input:Boolean=false;
 showradio:Boolean=false;
-sendvisionbtn=true;
+sendvisionbtn=false;
 sendtodb=false;
 objectborder=true;
 valuetext="Enter Object Name";

@@ -15,7 +15,6 @@
 <ion-content padding  style="--background:url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;">
   <!-- <div>{{imageBase64}}</div> -->
 
-  <div id="imagediv">
   <div style="font-size: 100px;margin-left: 45%;" >
     <ion-icon name="camera"  (click)="OpenMyCamera()"></ion-icon></div>
     <div *ngIf="spinner"  style="size:34px;background-color: transparent;margin-top: 15%;margin-left: 47%; position: absolute; "  name="crescent">
@@ -25,9 +24,9 @@
 
 
     <!-- <ion-icon name="camera"></ion-icon> -->
-    <!-- <div (click)="OpenMyGalary()">MyGalary</div> -->
-    <!-- *ngIf="picturetaken"  -->
-    <img  [src]="myimage" id="image" style="margin-left: 45%;max-width: 55%;border: 2px;border-radius: 20%
+    <!-- <div (click)="OpenMyGalary()">MyGalary</div> --> 
+    <div *ngIf="picturetaken">
+    <img  [src]="image" id="image" style="margin-left: 45%;max-width: 55%;border: 2px;border-radius: 20%
     ;margin-left: 22%;border:solid;border-width: 3px"/>
 
     
@@ -38,8 +37,7 @@
     <div *ngIf="objectborder" >
       <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" [id]="i"></div>
     </div>
-  </div>
-    <!-- </div> -->
+    </div>
     <div *ngIf="showradio" style="margin-top:-60%;border:solid;width:20%;background-color: white">
     <ion-radio-group >
       <ion-item style="background-color:transparent">
