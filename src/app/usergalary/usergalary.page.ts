@@ -35,7 +35,7 @@ padding;
 spinner2=false;
 input:Boolean=false;
 showradio:Boolean=false;
-sendvisionbtn=false;
+sendvisionbtn=true;
 sendtodb=false;
 objectborder=true;
 valuetext="Enter Object Name";
@@ -135,11 +135,11 @@ valuetext="Enter Object Name";
   x;
   y;
   //show list of names of specific object
-  findlocation(event){
+  findlocation(event){//כלום לא מקבלx:numer,y:number
     this.listIn=[]
     debugger;
-    this.x=event.clientX;//the click position that the user  made-x
-    this.y=event.clientY;//" y
+    // this.x=event.clientX;//the click position that the user  made-x
+    // this.y=event.clientY;//
     this.elementinfo=document.getElementById("image").getBoundingClientRect();
     this.y=this.y-this.elementinfo.top;
     this.x=this.x-this.elementinfo.left;
@@ -160,7 +160,6 @@ radioChecked(num:number){
       this.ichecked='radio';
     }
 }
-
 //saves the object name
   saveObj(){
     debugger;
@@ -169,8 +168,6 @@ radioChecked(num:number){
     this.ichecked;
     var rad= document.getElementById("radio");
     var oth= document.getElementById("other");
-    //console.log(oth.checked);
-    //console.log(rad.checked);
     //if user added diffrent name to the object
     if( this.ichecked=='other')
     {
@@ -189,6 +186,11 @@ radioChecked(num:number){
       //insert to list
       this.listsave.push(this.currentobject);
     }
+  }
+  removeObj(obj:imageObject){
+    let index;
+    for ( index = 0; index < this.listsave.length &&this.listsave[index].ObjectId!=obj.ObjectId; index++);
+    this.listsave.splice(index);//remove the object- by index from the list -
   }
   // saveObjOther(){
   //   debugger;
@@ -238,7 +240,9 @@ file:File;
       setTimeout(() => {
         resolve(
           //img ,id ,cat id
-           this.userserv.getListObject(2,this.imageBase64).then(data => {
+
+           this.userserv.getListObject(2,this.myimage1).then(data => {
+
              this.listObj = data;
              this.spinner=false;
             debugger;
@@ -255,7 +259,7 @@ file:File;
       setTimeout(() => {
         resolve(
           //list Save imageBase64
-           this.userserv.postListObject(2,this.imageBase64,this.listsave).then(data => {
+           this.userserv.postListObject(2,this.myimage1,this.listsave).then(data => {
             this.listObj = [];
             this.spinner2=false;
             document.getElementById("image").setAttribute("style","margin-left:13%;max-width: 75%;border: 2px;border-radius: 20%;border:solid;border-width: 5px;margin-top:-5%");
@@ -353,8 +357,14 @@ makeTransparency(event,obj:imageObject){
   this.sendtodb=false;
   document.getElementById("image").setAttribute("style","margin-left:20%;max-width: 75%;border: 2px;border-radius: 20% ;border:solid;border-width: 5px;margin-top:-5%;");
   debugger;
-  //imagediv
+  
+  // this.x=event.clientX;
+  // this.y=event.clientY;
+  // this.findlocation();
   this.showradio=true;
+  // let i ;
+  // for (i = 0; i < this.listObj.length&&this.listObj[i].ObjectId!=this.clossestObj.ObjectId; i++);
+  //   mid=i;//the div that we need -clossestObj!
   var mid=event.currentTarget.id;
   console.log(event.currentTarget);
   if(mid!=null){
@@ -365,7 +375,6 @@ makeTransparency(event,obj:imageObject){
     document.getElementById(mid).setAttribute("style","position:absolute;height:"+size.height+"px; width:"+size.width+"px;left:"
     +size.left+"px;top:"+offTop+"px;border:3px dashed black;background-color: #fff; opacity:0.3");
     }
-    
     this.currentobject=obj;
 }
 play1=false;
@@ -396,77 +405,5 @@ pause=true;
 }
 
 
-
-
-
-// borderImage(obj:imageObject,Id){
-//   debugger;
-//   // this.showBox=true;
-//   this.elementimage=document.getElementById("image").getBoundingClientRect();
-//   this.box=document.getElementById("idbox").getBoundingClientRect();
-//   //document.getElementById("boxid").setAttribute("style","height:144px;");//setAttribute("style", "color:red; border: 1px solid blue;");
-//   this.imagewidth=this.elementimage.width;//sizeofimage
-//   this.imageheight=this.elementimage.height;
-  
-//   //how to use  this.elementimage.padding??????????
-//   console.log(window.scrollX);
-//   //location of the  bounding box!!
-
-//   this.locLeft=(obj.X1*this.imagewidth)+this.elementimage.left;//left:103px;
-// /////////
-//   this.locTop=this.elementimage.top+(obj.Y4*this.imageheight);//+this.elementimage.top;
-//   debugger;
-
-//   //change the bounding box of the object from code-ts!
-//   document.getElementById(Id).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
-//   "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:2px solid #8c9c9a; background-color:transparent;opacity:0.5");
-
-//   this.screenW=this.platform.width();
-//   this.screenH=this.platform.height();
- 
-//   // this.xbox=(this.x4*this.imagewidth)+this.elementimage.left;//at px!!!!!
-//   // this.ybox=(this.y4*this.imageheight)+this.elementimage.top;
-// //
-// }
-
-// makeTransparency(event,obj:imageObject){
-//   debugger;
-//   var mid=event.currentTarget.id;
-//   console.log(event.currentTarget);
-//   this.elementimage=document.getElementById("image").getBoundingClientRect();
-//   this.imageheight=this.elementimage.height;
-//   this.imagewidth=this.elementimage.width;//sizeofimage
-//   this.locLeft=(obj.X1*this.imagewidth)+this.elementimage.left;//left:103px;
-//   //this.locTop=this.imageheight-(this.imageheight*this.y4);//+this.elementimage.top;+++++++74
-//   this.locTop=this.imageheight*obj.Y1+this.elementimage.top;//+this.elementimage.top;+++++++74
-
-//   var x=document.getElementById("image");
-//   var style =  window.getComputedStyle(x);
-//   console.log(style.marginTop);
-//   //size of box!!!!
-//   this.sizeW=(obj.X2-obj.X1)*this.imagewidth;
-//   this.sizeH=(obj.Y4-obj.Y1)*this.imageheight;
-
-//   document.getElementById(mid).setAttribute("style","top:"+this.locTop+"px;left:"+this.locLeft+"px;height:"
-//     +this.sizeH+"px;"+"width:"+this.sizeW+"px;position:absolute;");
-//   this.borderImage(obj,mid);
-// }
-
-
-
-// ionViewDidLoad() {
-//   console.log('ionViewDidLoad UsergalaryPage');
-// }
-// OpenMyCamera(){
-//   this.loadImage();
-//   debugger;
-//   this.img="../../assets/imgs/broccoli.jpg";
-// }
-// OpenMyGalary(){
-//   debugger;
-//   //this.makeTransparency();
-//   //this.borderImage();
-//   //this.img="../../assets/imgs/panda.jpg";
-// }
 
 

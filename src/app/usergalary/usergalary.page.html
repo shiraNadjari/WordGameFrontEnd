@@ -14,15 +14,20 @@
 
 <ion-content padding  style="--background:url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;">
   <!-- <div>{{imageBase64}}</div> -->
-  <div id="imagediv" >
-<div style="font-size: 100px;margin-left: 45%;" >
+  <div id="imagediv">
+  <div style="font-size: 100px;margin-left: 45%;" >
     <ion-icon name="camera"  (click)="OpenMyCamera()"></ion-icon></div>
-    <div *ngIf="picturetaken">
-    <div *ngIf="spinner" style="size:50px;background-color: transparent;margin-top: 15%;margin-left: 47%; position: absolute;" ><ion-spinner name="bubbles" ></ion-spinner></div><br>
+    <div *ngIf="spinner"  style="size:34px;background-color: transparent;margin-top: 15%;margin-left: 47%; position: absolute; "  name="crescent">
+      <ion-spinner  style="width: 60px;height: 68px;" name="crescent" ></ion-spinner>
+</div><br>
+      <!-- <ion-spinner style="size:34px;background-color: transparent;margin-top: 5%;margin-left: 50%; position: absolute; width: 60px;height: 68px;"  name="crescent"  ></ion-spinner> -->
+
+
     <!-- <ion-icon name="camera"></ion-icon> -->
     <!-- <div (click)="OpenMyGalary()">MyGalary</div> -->
-    <img  [src]="image" id="image" style="margin-left:13%;max-width: 75%;border: 2px;border-radius: 20%
-    ;border:solid;border-width: 5px;margin-top:-5%"/>
+    <img  [src]="myimage" id="image" style="margin-left: 45%;max-width: 55%;border: 2px;border-radius: 20%
+    ;margin-left: 22%;border:solid;border-width: 3px"/>
+
     
     <ion-button *ngIf="spinner==false&&listFull&&sendvisionbtn" (click)="sendToVision()" style="margin-top: -18%;margin-left: 44%;">Find Objects</ion-button>
     <ion-button *ngIf="viewlist" (click)="forObject()" style="margin-top: -18%;margin-left: 44%;">View Results</ion-button>
@@ -33,7 +38,6 @@
       </div>
     </div>
   </div>
-    </div>
     <div *ngIf="showradio" style="margin-top:-60%;border:solid;width:20%;background-color: white">
     <ion-radio-group >
       <ion-item style="background-color:transparent">
@@ -55,7 +59,6 @@
   <br>     
     <!-- <ion-input placeholder="Other" [(ngModel)]="valuetext"></ion-input> -->
     <ion-icon style="font-size: 60px;margin-left: 35%;" name="checkmark-circle-outline" (click)="saveObj()"></ion-icon>
-    
   </div>
   <ion-button *ngIf="sendtodb" (click)="saveInDB()" style="margin-top: -18%;margin-left:53%;">Save Image</ion-button>
   <div *ngIf="spinner2" style="size:34px;background-color: transparent;margin-top: -35%;margin-left: 44%; position: absolute;" ><ion-spinner name="bubbles" ></ion-spinner></div><br>
