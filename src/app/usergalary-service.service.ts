@@ -22,7 +22,7 @@ export class UsergalaryServiceService {
  postListObject(userId:number,base64:string,listObj:imageObject[]): any {
     listObj[0].VoiceURL=base64;
     debugger;
-    return this.http.post(environment.baseRoute+'UserObject/'+userId+"?catid=6",listObj)
+    return this.http.post("http://34.77.45.90/api/UserObject/"+userId+"?catid=6",listObj)
     .toPromise().then(
       res => { 
         //this.imagesArr=res;

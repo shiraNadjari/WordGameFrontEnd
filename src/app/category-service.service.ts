@@ -20,7 +20,7 @@ export class CategoryServiceService {
   pause=true;
   //get num pages of this category-by category id 
   getNumPageByCategoryId(categoryId:number): any {
-    return this.http.get("http://localhost:52093//api/Categories/"+categoryId).toPromise().then(
+    return this.http.get("http://34.77.45.90//api/Categories/"+categoryId).toPromise().then(
       res => { return res;})
       .catch(err => { return false;})
   }
