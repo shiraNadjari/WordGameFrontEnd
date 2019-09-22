@@ -16,7 +16,7 @@ image:any='';
 img:any;
 listObj: imageObject[]=[];
 arrngFor: number[]=[];
-
+picturetaken=false;
 showBox=false;
 elementimage:any;
 imagewidth:any;
@@ -32,12 +32,15 @@ locTop;
 locLeft;
 locBottom;
 padding;
+spinner2=false;
 input:Boolean=false;
 showradio:Boolean=false;
 sendvisionbtn=true;
 sendtodb=false;
+objectborder=true;
 valuetext="Enter Object Name";
   items: any;
+  data: FormData;
   constructor(private camera:Camera, public platform:Platform,private userserv: UsergalaryServiceService,public servCategory:CategoryServiceService,public router :Router) {
     if (servCategory.IsPlaying)
     {
@@ -208,17 +211,42 @@ radioChecked(num:number){
     //service call - save in storage!!
     this.postListObj();
   }
+
+ dataURLtoFile(dataurl, filename) {
+    // https://stackoverflow.com/questions/35940290/how-to-convert-base64-string-to-javascript-file-object-like-as-from-file-input-f?noredirect=1&lq=1
+    let arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  }
   //send image to vision
+file:File;
   resolveAfter4SecondsGetlist() {
+    debugger;
+    // const file = this.dataURLtoFile(this.myimage1, 'img.jpg');
+    // const formD = new FormData();
+    // formD.append('file', file);
+    //var blob=new Blob([this.myimage1],{type:"text/xml"});
+    //this.file=new File(,"bla");
+    //"C:\Users\shira_000\Downloads\56b67b3519f2f8fc5236c5407ccd78fb.jpg";
+    // var data1 = new FormData();
+    //  data1.append("image_data",blob);
     return new Promise(resolve => {
       setTimeout(() => {
         resolve(
           //img ,id ,cat id
-           this.userserv.getListObject(13,this.myimage1).then(data => {
+
+           this.userserv.getListObject(2,this.imageBase64).then(data => {
+
              this.listObj = data;
              this.spinner=false;
             debugger;
-             document.getElementById("image").setAttribute("style","max-width: 55%;border: 2px;border-radius: 20%;margin-left: 22%;border:solid;border-width: 3px;");
+             document.getElementById("image").setAttribute("style","margin-left:13%;max-width: 75%;border: 2px;border-radius: 20% ;border:solid;border-width: 5px;margin-top:-5%");
              this.viewlist=true;
              console.log(this.listObj);
           })
@@ -231,11 +259,13 @@ radioChecked(num:number){
       setTimeout(() => {
         resolve(
           //list Save imageBase64
-           this.userserv.postListObject(13,this.myimage1,this.listsave).then(data => {
-            this.listObj = data;
-         
-           debugger;
-             console.log(this.listObj);
+           this.userserv.postListObject(2,this.imageBase64,this.listsave).then(data => {
+            this.listObj = [];
+            this.spinner2=false;
+            document.getElementById("image").setAttribute("style","margin-left:13%;max-width: 75%;border: 2px;border-radius: 20%;border:solid;border-width: 5px;margin-top:-5%");
+            debugger;
+            this.picturetaken=false;
+            console.log(this.listObj);
            })
         );
       }, 250);
@@ -250,7 +280,7 @@ radioChecked(num:number){
   async sendToVision() {
     debugger;
    this.listFull=false;
-    document.getElementById("image").setAttribute("style","max-width: 55%;border: 2px;border-radius: 20%;margin-left: 22%;opacity:0.4;border:solid;border-width: 3px;");
+    document.getElementById("image").setAttribute("style","margin-left:13%;max-width: 75%;border: 2px;border-radius: 20%;opacity:0.4 ;border:solid;border-width: 5px;margin-top:-5%");
     this.listObj=[];
     this.spinner=true;
     var x = await this.resolveAfter4SecondsGetlist();
@@ -273,6 +303,10 @@ radioChecked(num:number){
        // If it's base64 (DATA_URL):
        debugger;
       //  
+      this.objectborder=true;
+      this.picturetaken=true;
+      this.listFull=true;
+      this.sendvisionbtn=true;
       this.baseimage=imageData;
        this.imageBase64=imageData;
        this.image ='data:image/jpeg;base64,'+  imageData;
@@ -285,11 +319,17 @@ radioChecked(num:number){
     }
   //send objectlist to server and update in db
     saveInDB(){
+      this.sendtodb=false;
+      this.objectborder=false;
+   
+      document.getElementById("image").setAttribute("style","margin-left:13%;max-width: 75%;border: 2px;border-radius: 20%;opacity:0.4 ;border:solid;border-width: 5px;margin-top:-5%");
+      this.spinner2=true;
       this.postListObj();
 
     }
 //border functions
 forObject(){
+  this.objectborder=true;
   debugger;
   this.viewlist=false;
   for (let i = 0; i < this.listObj.length; i++) {
@@ -314,6 +354,8 @@ borderImage(obj:imageObject,Id){
 }
 currentobject;
 makeTransparency(event,obj:imageObject){
+  this.sendtodb=false;
+  document.getElementById("image").setAttribute("style","margin-left:20%;max-width: 75%;border: 2px;border-radius: 20% ;border:solid;border-width: 5px;margin-top:-5%;");
   debugger;
   
   // this.x=event.clientX;
@@ -363,77 +405,5 @@ pause=true;
 }
 
 
-
-
-
-// borderImage(obj:imageObject,Id){
-//   debugger;
-//   // this.showBox=true;
-//   this.elementimage=document.getElementById("image").getBoundingClientRect();
-//   this.box=document.getElementById("idbox").getBoundingClientRect();
-//   //document.getElementById("boxid").setAttribute("style","height:144px;");//setAttribute("style", "color:red; border: 1px solid blue;");
-//   this.imagewidth=this.elementimage.width;//sizeofimage
-//   this.imageheight=this.elementimage.height;
-  
-//   //how to use  this.elementimage.padding??????????
-//   console.log(window.scrollX);
-//   //location of the  bounding box!!
-
-//   this.locLeft=(obj.X1*this.imagewidth)+this.elementimage.left;//left:103px;
-// /////////
-//   this.locTop=this.elementimage.top+(obj.Y4*this.imageheight);//+this.elementimage.top;
-//   debugger;
-
-//   //change the bounding box of the object from code-ts!
-//   document.getElementById(Id).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
-//   "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:2px solid #8c9c9a; background-color:transparent;opacity:0.5");
-
-//   this.screenW=this.platform.width();
-//   this.screenH=this.platform.height();
- 
-//   // this.xbox=(this.x4*this.imagewidth)+this.elementimage.left;//at px!!!!!
-//   // this.ybox=(this.y4*this.imageheight)+this.elementimage.top;
-// //
-// }
-
-// makeTransparency(event,obj:imageObject){
-//   debugger;
-//   var mid=event.currentTarget.id;
-//   console.log(event.currentTarget);
-//   this.elementimage=document.getElementById("image").getBoundingClientRect();
-//   this.imageheight=this.elementimage.height;
-//   this.imagewidth=this.elementimage.width;//sizeofimage
-//   this.locLeft=(obj.X1*this.imagewidth)+this.elementimage.left;//left:103px;
-//   //this.locTop=this.imageheight-(this.imageheight*this.y4);//+this.elementimage.top;+++++++74
-//   this.locTop=this.imageheight*obj.Y1+this.elementimage.top;//+this.elementimage.top;+++++++74
-
-//   var x=document.getElementById("image");
-//   var style =  window.getComputedStyle(x);
-//   console.log(style.marginTop);
-//   //size of box!!!!
-//   this.sizeW=(obj.X2-obj.X1)*this.imagewidth;
-//   this.sizeH=(obj.Y4-obj.Y1)*this.imageheight;
-
-//   document.getElementById(mid).setAttribute("style","top:"+this.locTop+"px;left:"+this.locLeft+"px;height:"
-//     +this.sizeH+"px;"+"width:"+this.sizeW+"px;position:absolute;");
-//   this.borderImage(obj,mid);
-// }
-
-
-
-// ionViewDidLoad() {
-//   console.log('ionViewDidLoad UsergalaryPage');
-// }
-// OpenMyCamera(){
-//   this.loadImage();
-//   debugger;
-//   this.img="../../assets/imgs/broccoli.jpg";
-// }
-// OpenMyGalary(){
-//   debugger;
-//   //this.makeTransparency();
-//   //this.borderImage();
-//   //this.img="../../assets/imgs/panda.jpg";
-// }
 
 

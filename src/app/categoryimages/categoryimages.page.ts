@@ -80,7 +80,7 @@ resolveAfter4Secondsimages() {
   this.imagesArr=0;
   debugger;
   if(this.servcategory.onecategory.CategoryId==-1)
-      this.userid=13;
+      this.userid=2;
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(
