@@ -151,7 +151,14 @@ navtoimage(event,item:imageWithObject,i:number){//send image id to image page an
 }
 
 GoBack(){
-  this.PassRouter.navigate(['category']);
+  if(this.servcategory.fromUser==true){
+    this.servcategory.fromUser=false;
+    this.PassRouter.navigate(['user']);
+  }
+  else
+  {
+    this.PassRouter.navigate(['category']);
+  }
 }
 
 ionViewDidLoad() {

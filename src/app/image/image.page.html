@@ -1,53 +1,87 @@
-<body style="background-color: turquoise">
 <ion-header>
   <ion-toolbar>
-    <ion-title [style.color]="color">
+    <ion-grid style="height: 80px">
+      <ion-row>
+        <ion-col>
+            <ion-icon [style.color]="color" name="arrow-back" style="margin-top: 9%;width:80%;font-size: 30px;margin-left: 10%" (click)="GoBackPage()"></ion-icon>  
+          </ion-col>
+            <ion-col>
+            
+              </ion-col>
+              <ion-col>
+            
+                </ion-col>
+                <ion-col>
+            
+                  </ion-col>
+                  <ion-col>
+            
+                    </ion-col>
+        <ion-col>
 
-        <ion-icon name="home" style="width:3%;"(click)="GoBackHome()"></ion-icon>
-        <img style="width:3%;margin-left: 90%;" (click)="playAudioBack()" *ngIf="categoryserv.play" src='../../assets/play.jpg'>        
-        <img style="width:3%;margin-left: 90%;" (click)="stopBack()" *ngIf="categoryserv.pause" src='../../assets/pause (2).jpg'>
+        </ion-col>
+        <ion-col>
+            
+          </ion-col>
+          <ion-col>
+            
+            </ion-col>
+            <ion-col>
+            
+              </ion-col>
+
+          <ion-col>
+            
+            </ion-col>
+            <ion-col>
+                <img style="margin-top: 3%;width:60%;margin-left: 80%;"  (click)="playAudioBack()" *ngIf="categoryserv.play" src='../../assets/icon/icons8-music-512.jpg'>
+                <img style="margin-top: 3%;width:60%;margin-left: 80%;"  (click)="stopBack()" *ngIf="categoryserv.pause" src='../../assets/icon/off.jpg'>
+  
+              </ion-col>
+              <ion-col>
+                  <img (mouseover)="info=true" (mouseout)="info = false" src="../../assets/icon/infooo.jpg" style="margin-top:3%;width: 62%;margin-left: 50%;padding-bottom: 6%"/>
+
+                </ion-col>
+
+        <ion-col>
+            <img (click)="GoBackHome()" src="../../assets/icon/icons8-home-100.png" style="margin-top: 3%;width:60%;margin-top: 3%;margin-left: 20%"/>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
        
         <!-- <img src="../../assets/homepng.png" style="width: 2%;margin-left: 95%" (click)="GoBackHome()" /> -->
-      </ion-title>
-    <ion-icon [style.color]="color1" name="arrow-back" style="margin-right: 100%" (click)="GoBackPage()" ></ion-icon>       
        <!-- <ion-icon name="home" (click)="GoBackHome()" style="margin-left: 95%"></ion-icon> -->
   </ion-toolbar>
 </ion-header>
+<img src="../../assets/icon/info.jpg" *ngIf="info" style="width: 100%"/>
+
 <ion-content class="general">
+    <div style="-webkit-background-size:cover;height: 100%;background-color: #b3faff" > 
 
-
-<div id="bla" class="general" style="background-size: cover;">
   <ion-slides  class="general" (ionSlideDidChange)="slideHappened($event)"  id="slides"   style="position: relative" ##sliderRef>   
       <ion-slide  class="general" *ngFor="let item of images; let i=index"  >
         <div  id="imagenumber" class="fontborder" [style.color]="color" style="margin-top:-15%;margin-left: -25%;font-size: xx-large;position: absolute;" ></div>
-        <img (click)="GoLeft()" *ngIf="left" src="../../assets/arrowleft.png" style="width: 15%;margin-left: -20%;margin-top: 10%;"/>
+                      <img (click)="GoLeft()" *ngIf="left" src="../../assets/arrowleft.png" style="width: 15%;margin-left: -20%;margin-top: 5%;"/>
+
+                      <img  (click)='forObject()' id="{{i}}" [src]="item.image.URL" style="border-radius: 10%; margin-top:4%; border-color:  #E91E63;border-style: solid;border-width: 10px;height: 100%;padding-top: 0.5%;width: 50%;align-self: center;-webkit-background-size:cover" />
+
+    
+                    <img (click)="GoRight()" *ngIf="right" src="../../assets/right1.png" style="width: 15%; margin-right:-20%;margin-top: 5%;"/>
   
-        <img  (click)='forObject()' id="{{i}}" [src]="item.image.URL" style="border-radius: 10%; margin-top:10%;margin-left: 2%; border-color:  #E91E63;border-style: solid;border-width: 10px;height: 100%;padding-top: 0.5%;width: 60%;align-self: center;-webkit-background-size:cover" />
       
         <!-- <div (swipe)="($event.offsetDirection  == 4) ? goback():goforward()" *ngIf="img" id="image" (click)="findclickcoordinants($event)" [ngStyle]="{'background-image':'url('+ item.image.URL +')'}" style="margin-left:20%;height: 100%;padding-top: 1%;width: 60%;align-self: center;-webkit-background-size:cover"> -->
         <!-- <p id="ooo" > {{NameObject}}</p>  -->
       
  <!-- </div>  -->
-      <img (click)="GoRight()" *ngIf="right" src="../../assets/right1.png" style="width: 15%; margin-right:-20%;margin-top: 10%;"/>
    </ion-slide>
   </ion-slides>
-  <div *ngIf="listObj" >
-    <div  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" id="{{'div'+i}}">
+  <div style="border-radius: 10%" *ngIf="listObj" >
+    <div style="border-radius: 10%"  *ngFor="let obj of listObj;let i=index" (click)="makeTransparency($event,obj)" id="{{'div'+i}}">
 
     </div>
   </div>
-  <img *ngIf="clickfinger" src="../../assets/tap.png" style="position: absolute;width: 10%;height: 30%; margin-left: 50%;margin-top: -7%;z-index: 10;">
- <br>
- <br>
- <br>
- <br> <br>
- <br>
- <br>
- <br>
- <br> <br> <br> <br>
- <br>
- <br> <br> <br> <br>
+  <img *ngIf="clickfinger" src="../../assets/tap.png" style="position: absolute;width: 10%;height: 30%; margin-left: 50%;margin-top: -10%;z-index: 10;">
 </div>
 </ion-content>
-</body>

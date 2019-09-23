@@ -10,6 +10,7 @@ import {environment}from '../environments/environment'
 export class CategoryServiceService {
 
   constructor(public http: HttpClient) { }
+  fromUser=false;
   color="";
   index=0;
   cateroriesArr:any;

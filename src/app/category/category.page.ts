@@ -152,4 +152,10 @@ pause=true;
     this.servCategory.play=true
     this.servCategory.IsPlaying=false;
   }
+  
+  fun(){
+  debugger;
 }
+}
+
+

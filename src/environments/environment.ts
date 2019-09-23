@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   //baseRoute:"http://c50473d4.ngrok.io/api/"
-  baseRoute:"http://localhost:52093/api/"
+  baseRoute:"http://34.77.45.90/api/"
 
 };
 

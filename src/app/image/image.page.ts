@@ -142,8 +142,8 @@ color1="E91E63"
   //this.forObject();
   for (let i = 0; i < this.listObj.length; i++) {
   var mydiv='div'+i;
-  document.getElementById(mydiv).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
-  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid rgb(4, 92, 70); background-color:transparent;z-index:12;display:none; ");
+  document.getElementById(mydiv).setAttribute("style","border-radius:50px;position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
+  "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px rgb(4, 92, 70); background-color:transparent;z-index:12;display:none; ");
  
 }
 }
@@ -430,7 +430,7 @@ borderImage(obj:imageObject,Id){
   this.sizeH=(obj.Y4-obj.Y1)*this.imageheight;
   //change the bounding box of the object from code-ts!
   var mydiv='div'+Id;
-  document.getElementById(mydiv).setAttribute("style","position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
+  document.getElementById(mydiv).setAttribute("style","border-radius:50px;position:absolute;height:"+this.sizeH+"px; width:"+this.sizeW+
   "px;left:"+this.locLeft+"px;top:"+this.locTop+"px;border:3px solid black; background-color:transparent;z-index:12; ");
 }
 makeTransparency(event,obj:imageObject){
@@ -444,7 +444,7 @@ makeTransparency(event,obj:imageObject){
      var offTop= document.getElementById(mid).offsetTop;
     this.forObject();//all the element dont change, l'm here:
     var size= document.getElementById(mid).getBoundingClientRect();
-    document.getElementById(mid).setAttribute("style","position:absolute;height:"+size.height+"px; width:"+size.width+"px;left:"
+    document.getElementById(mid).setAttribute("style","border-radius:50px;position:absolute;height:"+size.height+"px; width:"+size.width+"px;left:"
     +size.left+"px;top:"+offTop+"px;border:3px dashed rgb(4, 92, 70);background-color: #fff; opacity:0.3;z-index:12; ");
     this.initVoice(obj.VoiceURL);
     if(this.categoryserv.pause)

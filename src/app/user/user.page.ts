@@ -22,9 +22,11 @@ export class UserPage implements OnInit {
   ngOnInit() {
   }
   openMyImages(){
+    this.servCategory.fromUser=true;
     this.router.navigate(['categoryimages']);
   }
   AddImages(){
+    debugger;
     this.router.navigate(['usergalary']);
   }
   play1=false;
