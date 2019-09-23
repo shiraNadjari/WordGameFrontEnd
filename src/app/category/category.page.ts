@@ -82,7 +82,7 @@ colors:string[];
       this.items2=this.items;
       debugger;
       this.aa= this.items2;
-      this.iconadd=new category("My Images",-1,"../../assets/pluslove.jpg");
+      this.iconadd=new category("My Images",-1,"https://storage.googleapis.com/wordproject/pluslove.jpg");
       this.aa.pop();
       this.aa.push(this.iconadd);
       // this.aa=categories;
@@ -131,7 +131,7 @@ colors:string[];
   initVoice() {
     debugger;
     this.servCategory.audio = new Audio();
-    this.servCategory.audio.src ="../../assets/backgroundsong.mp3";
+    this.servCategory.audio.src ="https://storage.googleapis.com/wordproject/backgroundsong.mp3";
     this.servCategory.audio.load();
     this.playAudio();
   }

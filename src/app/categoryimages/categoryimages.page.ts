@@ -168,7 +168,7 @@ ionViewDidLoad() {
 initVoice() {
   debugger;
   this.servcategory.audio = new Audio();
-  this.servcategory.audio.src ="../../assets/backgroundsong.mp3";
+  this.servcategory.audio.src ="https://storage.googleapis.com/wordproject/backgroundsong.mp3";
   this.servcategory.audio.load();
   this.playAudio();
 }

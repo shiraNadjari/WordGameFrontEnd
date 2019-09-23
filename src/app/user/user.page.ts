@@ -41,6 +41,7 @@ playAudio() {
 
 pause=true;
   stop() {
+    debugger;
     this.servCategory.audio.pause(); 
     this.servCategory.pause=false
     this.servCategory.play=true

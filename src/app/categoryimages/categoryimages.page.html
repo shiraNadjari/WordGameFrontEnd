@@ -15,11 +15,11 @@
 
 <!-- ;color:rgb(14, 234, 241) -->
 <ion-col>
-     <img style="margin-top: 3%;width:70%;margin-left: 20%;"  (click)="playAudio()" *ngIf="servcategory.play" src='../../assets/icon/icons8-music-512.jpg'>
-     <img style="margin-top: 3%;width:70%;margin-left: 20%;"  (click)="stop()" *ngIf="servcategory.pause" src='../../assets/icon/off.jpg'>
+     <img style="margin-top: 3%;width:70%;margin-left: 20%;"  (click)="playAudio()" *ngIf="servcategory.play" src='https://storage.googleapis.com/wordproject/icons8-music-512.jpg'>
+     <img style="margin-top: 3%;width:70%;margin-left: 20%;"  (click)="stop()" *ngIf="servcategory.pause" src='https://storage.googleapis.com/wordproject/off.jpg'>
 </ion-col>
 <ion-col>
-    <img style="margin-top:3%;width: 74%;padding-left: 3%;padding-bottom: 6%" (mouseover)="info=true" (mouseout)="info = false" src="../../assets/icon/infooo.jpg" />
+    <img style="margin-top:3%;width: 74%;padding-left: 3%;padding-bottom: 6%" (mouseover)="info=true" (mouseout)="info = false" src="https://storage.googleapis.com/wordproject/infooo.jpg" />
 </ion-col>
       </ion-row>
      
@@ -27,9 +27,9 @@
 </ion-grid>
     </ion-toolbar>
 </ion-header>
-<img src="../../assets/icon/info.jpg" *ngIf="info" style="width: 100%"/>
+<img src="https://storage.googleapis.com/wordproject/info.jpg" *ngIf="info" style="width: 100%"/>
 
-<ion-content [style.background-color]="color" style="--background:url('../../assets/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;">
+<ion-content [style.background-color]="color" style="--background:url('https://storage.googleapis.com/wordproject/upWordsbackground.jpg');-moz-background-size: cover;   background-size: cover;">
     <!-- <p  *ngIf="imagesArr == 0" style="font-size: 400%;text-align: center">please wait...</p> -->
     <div [style.background.color]="color" style="-webkit-background-size:cover;height:100%">
     <ion-spinner style="margin-top:10%"  class="spinnerCenter"  *ngIf="imagesArr == 0"></ion-spinner>

@@ -1,29 +1,65 @@
 <ion-header>
   <ion-toolbar [style.color]="color">
     <!-- <ion-title></ion-title> -->
-    <img style="width:2%;margin-left: 90%;" (click)="playAudio()" *ngIf="servCategory.play" src='../../assets/play.jpg'>
-    <img style="width:2%;margin-left: 90%;" (click)="stop()" *ngIf="servCategory.pause" src='../../assets/pause (2).jpg'>
-    <ion-icon  name="arrow-back" style="margin-right: 120%;width:3%;font-size: 30px" (click)="GoBack()"></ion-icon>  
+    <ion-grid style="height: 80px">
+        <ion-row>
+  <ion-col>
+       <ion-icon [style.color]="color1" name="arrow-back" style="margin-top: 3%;margin-right: 120%;width:70%;font-size: 30px" (click)="GoBack()"></ion-icon>  
+  
+  </ion-col>
+  <ion-col size="7">
+        <p [style.color]="color1" class="fontborder" style="margin-left: 49%;margin-top: 4%;text-align: center;font-family: Arial, Helvetica, sans-serif, serif;font-size: 150%">{{categoryname}}</p>
+  </ion-col>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+  <ion-col></ion-col>
+  
+  <!-- ;color:rgb(14, 234, 241) -->
+  <ion-col>
+       <img style="margin-top: 3%;width:70%;margin-left: 20%;"  (click)="playAudio()" *ngIf="servCategory.play" src='https://storage.googleapis.com/wordproject/icons8-music-512.jpg'>
+       <img style="margin-top: 3%;width:70%;margin-left: 20%;"  (click)="stop()" *ngIf="servCategory.pause" src='https://storage.googleapis.com/wordproject/off.jpg'>
+  </ion-col>
+  <ion-col>
+      <img style="margin-top:3%;width: 74%;padding-left: 3%;padding-bottom: 6%" (mouseover)="info=true" (mouseout)="info = false" src="https://storage.googleapis.com/wordproject/infooo.jpg" />
+  </ion-col>
+        </ion-row>
+       
+       <!-- <img src="../../assets/homepng.png" style="width: 2%;margin-left: 95%" (click)="GoBack()" /> -->
+  </ion-grid>
+  
+  
+  
   </ion-toolbar>
 </ion-header> 
+<img src="https://storage.googleapis.com/wordproject/info.jpg" *ngIf="info" style="height: 100%;"/>
 
 
-<ion-content class="general"  style="--background:url('../../assets/upWordsbackground.jpg');background-size: contain;   ">
-
-<img col-6 (click)="openMyImages()" src="../../assets/galleryfinaly.jpg" style="border-radius: 20% !important;border-style: solid;border-width: 10px;padding-right: 1%;padding-left: 1%;    margin-left: 8%;width: 35%;height: 50%;align-self: center;margin-top: 5%;border-color: rgb(42,93,124);background-color: white;" >
+<ion-content class="general"  style="--background:url('https://storage.googleapis.com/wordproject/upWordsbackground.jpg');background-size: contain;   ">
+<ion-grid>
+  <ion-row>
+  <ion-col style="height: 100%">
+    <img col-3 (click)="openMyImages()" src="https://storage.googleapis.com/wordproject/galleryfinaly.jpg" style="border-radius: 20% !important;border-style: solid;border-width: 10px;padding-right: 1%;margin-left: 40%;width: 50%;height: 50%;align-self: center;margin-top: 15%;border-color: rgb(42,93,124);background-color: white;" >
   <!-- <div  style="color:white; text-align: center; width:40% ;left:2%;right:5%;font-family: Arial, Helvetica, sans-serif;font-size: 45px; position: absolute;top: 70%;font-size:5vw;background-color:  rgb(42,93,124);">My Images</div> -->
- <div style=" text-align: center;background-color: rgb(42,93,124);width: 33%;margin-left: 9%;margin-top: -13%;height: 8%;font-size: 30px;color: white;position: absolute;">
+ <div style=" text-align: center;background-color: rgb(42,93,124);width: 48.5%;margin-left: 40%;margin-top: -17%;height: 12%;font-size: 40px;color: white;position: absolute;">
    My Images
  </div>
+  </ion-col>
+  <ion-col style="height: 100%">
+    <img col-3  (click)="AddImages()"  src="https://storage.googleapis.com/wordproject/cameraa.jpg" style="margin-left: 8%; border-radius: 20% !important;border-style: solid;border-width: 10px;padding-right: 1%; margin-left: 10%;width: 50%;height: 50%;align-self: center;margin-top: 15%;border-color: rgb(234, 107, 165);background-color: white;"> 
+  <!-- <div  style="color:white; text-align: center; width:40% ;margin-left: 8%;margin-left: 6%;right:5%;font-family: Arial, Helvetica, sans-serif;font-size: 45px; position: absolute;top: 70%;font-size:5vw;background-color:  rgb(42,93,124);">  Add Image</div> -->
+  <div style="text-align: center; background-color: rgb(234, 107, 165);width: 48.5%;margin-left: 10%;margin-top: -17%;height: 12%;font-size: 40px;color: white;position: absolute;">
+  Add Image
+  </div>
+  </ion-col>
+</ion-row>
+</ion-grid>
+
+
   <!-- <img (click)='itemTapped($event,item)' [src]="item.ImageURL" style="border-radius: 20% !important;   border-style: solid;border-width: 10px; padding-right: 1%;padding-left: 1%;width: 100%;height: 100%;align-self: center;margin-top: 5%; -webkit-background-size: cover;" [style.border-color]="colors[i]" /> -->
 <!-- </button> -->
 
 
-<img col-6  (click)="AddImages()"  src="../../assets/cameraa.jpg" style="margin-left: 8%; border-radius: 20% !important;border-style: solid;border-width: 10px;padding-right: 1%;padding-left: 1%;    margin-left: 8%;width: 35%;height: 50%;align-self: center;margin-top: 10%;border-color: rgb(234, 107, 165);background-color: white;"> 
-  <!-- <div  style="color:white; text-align: center; width:40% ;margin-left: 8%;margin-left: 6%;right:5%;font-family: Arial, Helvetica, sans-serif;font-size: 45px; position: absolute;top: 70%;font-size:5vw;background-color:  rgb(42,93,124);">  Add Image</div> -->
-  <div style="text-align: center; background-color: rgb(234, 107, 165);width: 33%;margin-left: 52%;margin-top: -13%;height: 8%;font-size: 30px;color: white;position: absolute;">
-  Add Image
-  </div>
+
 <!-- </button> -->
 
 

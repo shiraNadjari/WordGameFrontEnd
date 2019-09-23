@@ -306,9 +306,13 @@ imagelocked=false;
    debugger;
    this.audio.onended = () => {
     this.audio.onended = null;
+    this.categoryserv.play=true;
+
   this.playAudioBackAfterObject()
     this.imagelocked=false;
 } 
+this.categoryserv.play=false;
+
    this.audio.play();
    
    this.audio.loop = false;
@@ -374,7 +378,7 @@ imagelocked=false;
   initVoiceBack() {
     debugger;
     this.categoryserv.audio = new Audio();
-    this.categoryserv.audio.src ="../../assets/backgroundsong.mp3";
+    this.categoryserv.audio.src ="https://storage.googleapis.com/wordproject/backgroundsong.mp3";
     this.categoryserv.audio.load();
     this.playAudio();
   }
@@ -449,6 +453,7 @@ makeTransparency(event,obj:imageObject){
     this.initVoice(obj.VoiceURL);
     if(this.categoryserv.pause)
       {
+        debugger;
         this.stopBack();
         this.categoryserv.pause=true;
       }
